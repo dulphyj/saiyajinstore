@@ -5,7 +5,7 @@ import { HomeComponent } from "./components/home/home.component";
 
 @Component({
   selector: 'app-root',
-  imports: [UsersComponent, HomeComponent],
+  imports: [RouterOutlet, UsersComponent, HomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

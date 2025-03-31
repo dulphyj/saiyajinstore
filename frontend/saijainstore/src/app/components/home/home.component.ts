@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../common/product';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
+import { HeaderAdminComponent } from "../header-admin/header-admin.component";
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule],
+  imports: [CommonModule, HeaderAdminComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
