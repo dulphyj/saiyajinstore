@@ -9,5 +9,6 @@ export const routes: Routes = [
     { path: 'users', component: UsersComponent },
     { path: 'admin/products', component: ProductListComponent },
     { path: 'admin/products/addproduct', component: AddProductComponent },
+    { path: 'admin/products/updateproduct/:id', component: AddProductComponent },
     { path: '**', redirectTo: '' }
 ];

@@ -4,7 +4,7 @@ import { Product } from '../../common/product';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CategoryService } from '../../services/category.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../../common/category';
 
 @Component({
@@ -21,9 +21,11 @@ export class AddProductComponent implements OnInit {
   isSubmitting: boolean = false;
   message: string = '';
 
-  constructor(private productService: ProductService, private categoryService: CategoryService, private router: Router) { }
+  constructor(private productService: ProductService, private categoryService: CategoryService, private router: Router, private activatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
+    this.getProductById();
     this.getCategories();
+
   }
 
   getCategories(): void {
@@ -60,5 +62,25 @@ export class AddProductComponent implements OnInit {
 
   onCancel(): void {
     this.router.navigate(['/admin/products']);
+  }
+
+  getProductById(): void {
+    this.activatedRoute.params.subscribe(
+      prod => {
+        let id = prod['id'];
+        if (id) {
+          this.productService.getProductById(id).subscribe(
+            p => {
+              this.product.id = p.id;
+              this.product.code = p.code;
+              this.product.description = p.description;
+              this.product.name = p.name;
+              this.product.price = p.price;
+              this.product.urlImage = p.urlImage;
+              this.product.categoryId = p.categoryId;
+            });
+        }
+      }
+    )
   }
 }
