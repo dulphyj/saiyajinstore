@@ -2,7 +2,9 @@ package com.gonzalodev.saiyajinstore.backend.application;
 
 import com.gonzalodev.saiyajinstore.backend.domain.model.Category;
 import com.gonzalodev.saiyajinstore.backend.domain.port.CategoryRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CategoryService {
     private final CategoryRepository categoryRepository;
 

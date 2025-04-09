@@ -3,7 +3,9 @@ package com.gonzalodev.saiyajinstore.backend.application;
 import com.gonzalodev.saiyajinstore.backend.domain.model.Order;
 import com.gonzalodev.saiyajinstore.backend.domain.port.OrderRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
 @AllArgsConstructor
 public class OrderService {
     private final OrderRepository orderRepository;
