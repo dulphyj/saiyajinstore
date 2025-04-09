@@ -4,6 +4,7 @@ import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { HeaderAdminComponent } from "../header-admin/header-admin.component";
 import { RouterModule } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-list',
@@ -16,7 +17,7 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
 
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private toastr: ToastrService) { }
   ngOnInit(): void {
     this.getListProducts();
   }
@@ -29,6 +30,10 @@ export class ProductListComponent implements OnInit {
 
   deleteProductById(productId: number): void {
     this.productService.deleteProduct(productId)
-      .subscribe(() => this.getListProducts());
+      .subscribe(() => {
+        this.toastr.info('product deleted successfully', 'Deleted'),
+          this.getListProducts()
+      });
+
   }
 }

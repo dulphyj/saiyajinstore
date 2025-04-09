@@ -8,7 +8,7 @@ import { Product } from '../common/product';
 })
 export class ProductService {
   private apiUrl: string = "http://localhost:8080/api/products";
-
+  private imageUrl: string = "http://localhost:8080/api/images/admin";
   constructor(private httpClient: HttpClient) { }
 
   getAllProducts(): Observable<Product[]> {
@@ -18,7 +18,6 @@ export class ProductService {
   createProduct(product: Product): Observable<Product> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.post<Product>(`${this.apiUrl}/admin`, product, { headers });
-
   }
 
   deleteProduct(productId: number): Observable<any> {
@@ -28,4 +27,15 @@ export class ProductService {
   getProductById(id: number): Observable<Product> {
     return this.httpClient.get<Product>(`${this.apiUrl}/${id}`);
   }
+
+  updateProduct(id: number, formData: FormData): Observable<Product> {
+    return this.httpClient.put<Product>(`${this.apiUrl}/admin/update/${id}`, formData);
+  }
+
+  uploadImage(file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.httpClient.post<{ url: string }>(this.imageUrl, formData);
+  }
+
 }

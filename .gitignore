@@ -8,6 +8,9 @@
 /backend/.vscode
 /backend/logs/
 /backend/tmp/
+# Ignore sensitive Spring Boot configuration
+backend/src/main/resources/application-dev.properties
+backend/src/main/resources/application-pdn.properties
 
 # Frontend
 /frontend/node_modules/

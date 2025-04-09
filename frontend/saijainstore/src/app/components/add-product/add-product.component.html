@@ -1,7 +1,7 @@
 <div class="container mt-4">
     <h2 class="text-center text-white bg-primary py-2 rounded">Add Product</h2>
 
-    <form (ngSubmit)="createProduct()" class="p-4 bg-light rounded shadow">
+    <form (ngSubmit)="onSubmit()" class="p-4 bg-light rounded shadow">
         <!-- Nombre del Producto -->
         <div class="mb-3">
             <label for="name" class="form-label fw-bold">Product Name</label>
@@ -27,13 +27,24 @@
             <input type="number" id="price" [(ngModel)]="product.price" name="price" class="form-control" required>
         </div>
 
-        <!-- URL de Imagen -->
+        <!-- Input para subir imagen -->
         <div class="mb-3">
-            <label for="urlImage" class="form-label fw-bold">Image URL</label>
-            <input type="text" id="urlImage" [(ngModel)]="product.urlImage" name="urlImage" class="form-control">
+            <label for="imageUpload" class="form-label fw-bold">Upload Image</label>
+            <input type="file" id="imageUpload" (change)="onFileSelected($event)" class="form-control">
         </div>
 
-        <!-- Categoría -->
+        <!-- Vista previa de la imagen seleccionada antes de subirla -->
+        <div class="mb-3 text-center" *ngIf="imagePreview">
+            <img [src]="imagePreview" alt="Selected Image" class="img-thumbnail" width="150">
+        </div>
+
+        <!-- Vista previa de la imagen del producto si ya existe -->
+        <div class="mb-3 text-center" *ngIf="!imagePreview && product.urlImage">
+            <img [src]="product.urlImage" alt="Product Image" class="img-thumbnail" width="150">
+        </div>
+
+
+
         <!-- Categoría -->
         <div class="mb-3">
             <label for="category" class="form-label fw-bold">Category</label>
