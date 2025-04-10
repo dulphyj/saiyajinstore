@@ -16,6 +16,9 @@ export class ProductListComponent implements OnInit {
 
   products: Product[] = [];
 
+  urlAddProduct: string = '/admin/products/addproduct';
+  urlEditProduct: string = '/admin/products/updateproduct/';
+
 
   constructor(private productService: ProductService, private toastr: ToastrService) { }
   ngOnInit(): void {

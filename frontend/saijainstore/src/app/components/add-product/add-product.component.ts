@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../../common/category';
 import { CloudinaryService } from '../../services/cloudinary.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-add-product',
@@ -131,7 +132,7 @@ export class AddProductComponent implements OnInit {
   }
 
   private getDefaultImage(): string {
-    return 'http://res.cloudinary.com/digxhcgyu/image/upload/v1743625039/default_d0ejhh.jpg';
+    return `${environment.imgDefault}`;
   }
 
   onFileSelected(event: any) {

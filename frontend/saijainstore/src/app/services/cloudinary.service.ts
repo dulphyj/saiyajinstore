@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CloudinaryService {
 
-  private apiUrl = 'http://localhost:8080/api/images/admin'; // Ajusta si es necesario
+  private apiUrl: string = `${environment.apiUrl}/images/admin`;
 
   constructor(private httpClient: HttpClient) { }
 
