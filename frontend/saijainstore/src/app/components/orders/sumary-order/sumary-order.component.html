@@ -1,0 +1,63 @@
+<app-header-user />
+
+<div class="container my-5 d-flex justify-content-center">
+    <div class="card shadow rounded-4 border-0 w-100"
+        style="max-width: 900px; background-color: #0A174E; color: white;">
+        <div class="card-body p-4">
+
+            <!-- Title -->
+            <h4 class="fw-bold text-warning mb-4 text-center">Order Summary</h4>
+
+            <!-- Order Details -->
+            <div class="mb-4">
+                <h5 class="fw-bold text-white mb-3">Order Details</h5>
+                <p><strong>Name:</strong> {{ user.firstName }} {{user.lastName}}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+            </div>
+
+            <!-- Products Table -->
+            <div class="mb-4">
+                <h5 class="fw-bold text-white mb-3">Products</h5>
+                <div class="table-responsive">
+                    <table class="table  table-bordered text-center align-middle">
+                        <thead style="background-color: #b5b7bd;">
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let product of items">
+                                <td>{{ product.name }}</td>
+                                <td>${{ product.price.toFixed(2) }}</td>
+                                <td>{{ product.quantity }}</td>
+                                <td>${{ (product.price * product.quantity).toFixed(2) }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-danger" (click)="removeProduct(product.id)">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Final Summary -->
+            <div class="mt-4">
+                <h5 class="fw-bold text-white mb-3">Order Total</h5>
+                <div class="d-flex justify-content-between fs-5 mb-4">
+                    <span>Total:</span>
+                    <span class="fw-bold">${{ getTotal().toFixed(2) }}</span>
+                </div>
+                <button class="btn w-100 fw-bold" style="background-color: #F57C00; color: white;" (click)="onPay()">
+                    Pay
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

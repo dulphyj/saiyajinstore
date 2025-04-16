@@ -2,20 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../common/product';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
-import { HeaderAdminComponent } from "../header-admin/header-admin.component";
+import { Observable } from 'rxjs';
+import { RouterLink } from '@angular/router';
+import { HeaderUserComponent } from "../header-user/header-user.component";
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, HeaderAdminComponent],
+  imports: [CommonModule, RouterLink, HeaderUserComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-  products: Product[] = [];
+  //products: Product[] = [];
+  urlDetailProduct: string = '/cart/detailproduct';
 
-  constructor(private productService: ProductService) { }
+  products$: Observable<Product[]>;
+
+
+  constructor(private productService: ProductService) {
+    this.products$ = this.productService.getAllProducts();
+  }
 
   ngOnInit(): void {
-    this.productService.getAllProducts().subscribe(products => this.products = products);
+    //this.productService.getAllProducts().subscribe(products => this.products = products);
+
   }
 }

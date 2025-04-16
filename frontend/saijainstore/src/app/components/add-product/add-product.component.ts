@@ -9,11 +9,12 @@ import { Category } from '../../common/category';
 import { CloudinaryService } from '../../services/cloudinary.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../environments/environment';
+import { HeaderAdminComponent } from "../header-admin/header-admin.component";
 
 @Component({
   selector: 'app-add-product',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HeaderAdminComponent],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css'
 })

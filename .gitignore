@@ -18,6 +18,10 @@ backend/src/main/resources/application-pdn.properties
 /frontend/.angular/
 /frontend/.idea/
 /frontend/.vscode
+# Ignore Angular environment configuration files
+/frontend/saijainstore/src/environments/environment.ts
+/frontend/saijainstore/src/environments/environment.prod.ts
+
 
 # General
 .DS_Store

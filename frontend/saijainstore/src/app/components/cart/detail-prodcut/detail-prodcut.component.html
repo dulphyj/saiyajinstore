@@ -1,0 +1,31 @@
+<app-header-user />
+
+<div class="container mt-5">
+    <div class="card mx-auto shadow" style="max-width: 900px;">
+        <div class="row g-0">
+            <div class="col-md-6 d-flex align-items-center justify-content-center p-4">
+                <img [src]="product?.urlImage" class="img-fluid rounded shadow-sm" alt="{{ product?.name }}"
+                    style="max-height: 400px; object-fit: contain;">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h3 class="card-title">{{ product?.name }}</h3>
+                    <p class="card-text"><strong>Code:</strong> {{ product?.code }}</p>
+                    <p class="card-text"><strong>Description:</strong> {{ product?.description }}</p>
+                    <p class="card-text text-success fw-bold">
+                        <strong>Price:</strong> {{ product?.price | currency }}
+                    </p>
+                    <p class="card-text"><strong>Category:</strong> {{ product?.categoryId }}</p>
+
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label"><strong>Quantity:</strong></label>
+                        <input type="number" id="quantity" class="form-control" min="1" [(ngModel)]="quantity">
+                    </div>
+
+                    <a [routerLink]="'/'" class="btn btn-secondary mt-3 me-2">Back</a>
+                    <button (click)="addCart()" class="btn btn-primary mt-3">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

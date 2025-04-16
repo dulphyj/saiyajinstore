@@ -1,10 +1,10 @@
-<app-header-admin />
+<app-header-user />
 
 <div class="container mt-4">
     <h2 class="text-center text-white bg-primary py-2 rounded">Product List</h2>
 
     <div class="row">
-        <div class="col-md-4 mb-4" *ngFor="let item of products">
+        <div class="col-md-4 mb-4" *ngFor="let item of products$ | async">
             <div class="card shadow-lg border-0 h-100">
                 <div class="img-container">
                     <img [src]="item.urlImage" class="card-img-top" alt="{{item.name}}">
@@ -12,7 +12,8 @@
                 <div class="card-body text-center d-flex flex-column">
                     <h5 class="card-title">{{item.name}}</h5>
                     <p class="card-text text-success fw-bold">{{item.price | currency}}</p>
-                    <button class="btn btn-warning text-dark fw-bold mt-auto">Add to Cart</button>
+                    <a [routerLink]="[urlDetailProduct, item.id]" class="btn btn-primary mt-auto fw-bold">See
+                        product details</a>
                 </div>
             </div>
         </div>
