@@ -22,4 +22,13 @@ export class UserService {
     return this.httpClient.post<User>(`${this.apiUrl}`, user, { headers });
   }
 
+  getAllUsers(): Observable<User[]> {
+    return this.httpClient.get<User[]>(this.apiUrl);
+  }
+
+  deleteUser(id: number): Observable<any> {
+    return this.httpClient.delete(`${this.apiUrl}/delete/${id}`);
+  }
+
+
 }

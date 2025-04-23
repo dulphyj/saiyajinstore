@@ -23,4 +23,12 @@ public class UserService {
     public User findByEmail(String email){
         return userRepository.findByEmail(email);
     }
+
+    public Iterable<User> findAllUsers(){
+        return userRepository.findAllUser();
+    }
+
+    public void deleteUserById(Integer id){
+        userRepository.deleteUserById(id);
+    }
 }

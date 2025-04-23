@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/orders")
 @Slf4j
 @AllArgsConstructor
@@ -25,7 +26,7 @@ public class OrderController {
         return ResponseEntity.ok(orderService.save(order));
     }
 
-    @PostMapping("/update/order/state")
+    @PostMapping("/update/state")
     public ResponseEntity updateStateById(@RequestParam Integer id, @RequestParam String state){
         orderService.updateStateById(id, state);
         return ResponseEntity.ok().build();

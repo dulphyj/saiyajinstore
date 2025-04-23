@@ -32,4 +32,17 @@ public class UserCrudRepositoryImp implements UserRepository {
                 ()-> new RuntimeException("User with id: "+id+" not found")
         ));
     }
+
+    @Override
+    public Iterable<User> findAllUser() {
+        return userMapper.toUsers(userCRUDRepository.findAll());
+    }
+
+    @Override
+    public void deleteUserById(Integer id) {
+        userCRUDRepository.findById(id).orElseThrow(
+                ()-> new RuntimeException("User with id: "+id+" no found")
+        );
+        userCRUDRepository.deleteById(id);
+    }
 }
