@@ -22,8 +22,8 @@ export class OrderService {
     return this.httpClient.post<Order>(this.orderUrl, order);
   }
 
-  updateOrder(id: number, formData: FormData): Observable<Order> {
-    return this.httpClient.put<Order>(`${this.orderUrl}/update/state${id}`, formData); //Observable any
+  updateOrder(formData: FormData): Observable<any> {
+    return this.httpClient.post<Order>(`${this.orderUrl}/update/state`, formData); //Observable any
   }
 
   getOrderByUsserId(id: number): Observable<Order[]> {

@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("api/payments")
+@RequestMapping("/api/payments")
 @Slf4j
 @AllArgsConstructor
 public class PaypalController {
@@ -36,6 +36,7 @@ public class PaypalController {
                 );
                 for(Links links: payment.getLinks()) {
                     if(links.getRel().equals("approval_url")){
+                        log.info("approval done");
                         return new URLPaypalResponse(links.getHref());
                 }
             }
@@ -46,11 +47,16 @@ public class PaypalController {
     }
 
     @GetMapping("/success")
-    public RedirectView paymentSuccess(@RequestParam("paymentId") String paymentId, @RequestParam("PayerId") String payerId) throws PayPalRESTException {
-        Payment payment = paypalService.executePayment(paymentId, payerId);
-        if(payment.getState().equals("approved")){
-            //return new RedirectView("http://localhost:4200/payment/success");
-            return new RedirectView("http://localhost:4200");
+    public RedirectView paymentSuccess(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
+        try{
+            Payment payment = paypalService.executePayment(paymentId, payerId);
+            if(payment.getState().equals("approved")){
+                log.info("approved, success");
+                return new RedirectView("http://localhost:4200/payment/success");
+            }
+        } catch (PayPalRESTException e) {
+            log.warn("error with approved");
+            e.printStackTrace();
         }
         return new RedirectView("http://localhost:4200");
     }
