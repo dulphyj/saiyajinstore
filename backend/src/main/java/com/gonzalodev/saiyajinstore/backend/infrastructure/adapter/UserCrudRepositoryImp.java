@@ -22,8 +22,9 @@ public class UserCrudRepositoryImp implements UserRepository {
 
     @Override
     public User findByEmail(String email) {
-        //return userMapper.toUser(userCRUDRepository.findByEmail(email).get());
-        return null;
+        return userMapper.toUser(userCRUDRepository.findByEmail(email).orElseThrow(
+                ()-> new RuntimeException("User with email: "+ email +" not found")
+        ));
     }
 
     @Override
@@ -44,5 +45,10 @@ public class UserCrudRepositoryImp implements UserRepository {
                 ()-> new RuntimeException("User with id: "+id+" no found")
         );
         userCRUDRepository.deleteById(id);
+    }
+
+    @Override
+    public User updateUserById(Integer id) {
+        return null;
     }
 }

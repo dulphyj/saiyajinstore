@@ -11,14 +11,14 @@ import java.io.IOException;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/images")
+@RequestMapping("/api/admin/images")
 @CrossOrigin(origins = "http://localhost:4200")
 @Slf4j
 @AllArgsConstructor
 public class CloudinaryController {
     private final CloudinaryService cloudinaryService;
 
-    @PostMapping("/admin")
+    @PostMapping()
     public ResponseEntity<Map<String, String>> uploadImage(@RequestPart("file") MultipartFile file) {
         try {
             String imageUrl = cloudinaryService.uploadImage(file);
@@ -28,7 +28,7 @@ public class CloudinaryController {
         }
     }
 
-    @DeleteMapping("/admin/{publicId}")
+    @DeleteMapping("/{publicId}")
     public ResponseEntity<Map<String, String>> deleteImage(@PathVariable String publicId) {
         try {
             cloudinaryService.deleteImage(publicId);

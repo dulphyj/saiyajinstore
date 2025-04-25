@@ -25,7 +25,7 @@ export class PaymentSuccesComponent implements OnInit {
       data => {
         console.log('Order updated successfully', data);
 
-        //this.sessionStorage.removeItem('order');
+        this.sessionStorage.removeItem('order');
 
       }
     )

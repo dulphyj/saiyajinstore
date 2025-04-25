@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class CloudinaryService {
 
-  private apiUrl: string = `${environment.apiUrl}/images/admin`;
+  private apiUrl: string = `${environment.apiUrl}/admin/images`;
 
   constructor(private httpClient: HttpClient) { }
 

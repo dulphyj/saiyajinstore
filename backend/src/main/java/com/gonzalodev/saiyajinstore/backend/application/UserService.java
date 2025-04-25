@@ -31,4 +31,8 @@ public class UserService {
     public void deleteUserById(Integer id){
         userRepository.deleteUserById(id);
     }
+
+    public User updateUserById(Integer id){
+        return userRepository.updateUserById(id);
+    }
 }
