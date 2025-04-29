@@ -1,0 +1,45 @@
+<app-header-user />
+
+
+<div class="container mt-4">
+    <h2 class="text-center text-white bg-warning py-2 rounded shadow">Register your Power Level</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 p-4" style="background-color: #fef3c7;">
+                <form (ngSubmit)="onSubmit()">
+
+
+
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label fw-bold text-primary">First Name</label>
+                        <input [(ngModel)]="user.firstName" name="firstname" type="text" id="firstName"
+                            class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label fw-bold text-primary">Last Name</label>
+                        <input [(ngModel)]="user.lastName" name="lastname" type="text" id="lastName"
+                            class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-bold text-primary">Email</label>
+                        <input [(ngModel)]="user.email" name="email" type="email" id="email" class="form-control"
+                            required>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label fw-bold text-primary">Password</label>
+                        <input [(ngModel)]="user.password" name="password" type="password" id="password"
+                            class="form-control" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-warning w-100 fw-bold text-white mt-3">Register</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

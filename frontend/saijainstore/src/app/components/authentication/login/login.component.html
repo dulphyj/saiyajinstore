@@ -1,0 +1,28 @@
+<app-header-user />
+
+<div class="container mt-4">
+    <h2 class="text-center text-white bg-warning py-2 rounded shadow">Login to your Account</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 p-4" style="background-color: #fef3c7;">
+                <form (ngSubmit)="onSubmit()">
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-bold text-primary">Email</label>
+                        <input [(ngModel)]="email" name="email" type="email" id="email" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label fw-bold text-primary">Password</label>
+                        <input [(ngModel)]="password" name="password" type="password" id="password" class="form-control"
+                            required>
+                    </div>
+
+                    <button type="submit" class="btn btn-warning w-100 fw-bold text-white mt-3">Login</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

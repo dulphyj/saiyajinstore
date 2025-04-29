@@ -10,6 +10,7 @@ import { CloudinaryService } from '../../services/cloudinary.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../environments/environment';
 import { HeaderAdminComponent } from "../header-admin/header-admin.component";
+import { SessionStorageService } from '../../services/session-storage.service';
 
 @Component({
   selector: 'app-add-product',
@@ -26,7 +27,6 @@ export class AddProductComponent implements OnInit {
   message: string = '';
   selectFile!: File;
   imagePreview: string | ArrayBuffer | null = null;
-  publicId: string = '';
 
   constructor(
     private productService: ProductService,
@@ -34,11 +34,13 @@ export class AddProductComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private cloudinaryService: CloudinaryService,
+    private sesionStorage: SessionStorageService,
     private toastr: ToastrService
   ) { }
   ngOnInit(): void {
     this.getProductById();
     this.getCategories();
+    this.product.userId = this.sesionStorage.getItem('token').id;
 
   }
 
@@ -71,7 +73,7 @@ export class AddProductComponent implements OnInit {
 
   private saveProduct(): void {
     this.productService.createProduct(this.product).subscribe({
-      next: (response) => {
+      next: () => {
         this.toastr.success("product created successfully", "Success")
         setTimeout(() => this.router.navigate(['/admin/products']), 700);
       },

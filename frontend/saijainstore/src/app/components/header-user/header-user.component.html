@@ -23,13 +23,6 @@
                 </form>
             </ul>
 
-
-
-            <!-- Cart Button -->
-            <a class="btn btn-outline-warning fw-bold me-3" routerLink={{cartLink}}>
-                <i class="bi bi-cart-fill me-1"></i> Cart
-            </a>
-
             <!-- User dropdown -->
             <div class="dropdown">
                 <button class="btn dropdown-toggle fw-bold text-white" type="button" id="adminMenu"
@@ -37,9 +30,9 @@
                     User
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item text-primary" href="#">Users</a></li>
-                    <li><a class="dropdown-item text-primary" href="#">Products</a></li>
-                    <li><a class="dropdown-item text-primary" href="#">Orders</a></li>
+                    <li><a class="dropdown-item text-primary" routerLink={{loginLink}}>Login</a></li>
+                    <li><a class="dropdown-item text-primary" routerLink={{homeLink}}>Products</a></li>
+                    <li><a class="dropdown-item text-primary" routerLink={{cartLink}}>Cart</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>

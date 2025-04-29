@@ -7,6 +7,8 @@ import { CategoryComponent } from './components/category/category.component';
 import { DetailProdcutComponent } from './components/cart/detail-prodcut/detail-prodcut.component';
 import { SumaryOrderComponent } from './components/orders/sumary-order/sumary-order.component';
 import { PaymentSuccesComponent } from './components/payment-succes/payment-succes.component';
+import { RegistrationComponent } from './components/authentication/registration/registration.component';
+import { LoginComponent } from './components/authentication/login/login.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -18,5 +20,7 @@ export const routes: Routes = [
     { path: 'cart/detailproduct/:id', component: DetailProdcutComponent },
     { path: 'cart/sumary', component: SumaryOrderComponent },
     { path: 'payment/success', component: PaymentSuccesComponent },
+    { path: 'user/register', component: RegistrationComponent },
+    { path: 'login', component: LoginComponent },
     { path: '**', redirectTo: '' }
 ];

@@ -23,15 +23,20 @@ export class SumaryOrderComponent implements OnInit {
 
   items: ItemCart[] = [];
   totalCart: number = 0;
-  user: User = new User(null, '', '', '', '');
+  user!: User;
+  userId: number = 0;
   orderProducts: OrderProduct[] = [];
-  userId = 1;
 
 
   constructor(private cartService: CartService, private userService: UserService, private orderService: OrderService, private paymentService: PaymetService, private sessionStorage: SessionStorageService) { }
 
   ngOnInit(): void {
     this.initializeCart();
+    console.log("initialized cart", this.items);
+    //this.user.id = this.sessionStorage.getItem('user').id;
+    this.userId = this.sessionStorage.getItem('user').id;
+
+    console.log(this.sessionStorage.getItem('user'));
     this.getUserById(this.userId);
   }
 

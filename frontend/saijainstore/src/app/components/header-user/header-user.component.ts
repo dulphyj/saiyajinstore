@@ -12,6 +12,7 @@ export class HeaderUserComponent {
   searchTerm: any;
   cartLink: string = '/cart/sumary';
   homeLink: string = '/';
+  loginLink: string = '/login';
   onSearch() {
     throw new Error('Method not implemented.');
   }
