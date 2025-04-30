@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { HeaderUserComponent } from "../header-user/header-user.component";
+import { HomeService } from '../../services/home.service';
 
 @Component({
   selector: 'app-home',
@@ -19,8 +20,8 @@ export class HomeComponent implements OnInit {
   products$: Observable<Product[]>;
 
 
-  constructor(private productService: ProductService) {
-    this.products$ = this.productService.getAllProducts();
+  constructor(private homeService: HomeService) {
+    this.products$ = this.homeService.getAllProducts();
   }
 
   ngOnInit(): void {

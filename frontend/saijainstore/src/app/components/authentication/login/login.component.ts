@@ -23,9 +23,10 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     let userDto = new Userdto(this.email, this.password);
     this.authentication.login(userDto).subscribe(
-      token => {
-        this.sesionStorage.setItem('token', token);
-        console.log("Login successful!", token, userDto.username);
+      response => {
+        this.sesionStorage.setItem('token', { token: response.token });
+        this.sesionStorage.setItem('userId', response.id);
+        console.log("Login successful!", " token: ", response.token, " user :", userDto.username, "userId: ", response.id);
       }
     )
   }

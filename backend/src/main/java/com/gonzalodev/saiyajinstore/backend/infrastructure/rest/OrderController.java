@@ -1,8 +1,10 @@
 package com.gonzalodev.saiyajinstore.backend.infrastructure.rest;
 
 import com.gonzalodev.saiyajinstore.backend.application.OrderService;
+import com.gonzalodev.saiyajinstore.backend.application.UserService;
 import com.gonzalodev.saiyajinstore.backend.domain.model.Order;
 import com.gonzalodev.saiyajinstore.backend.domain.model.OrderState;
+import com.gonzalodev.saiyajinstore.backend.domain.model.User;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class OrderController {
     private final OrderService orderService;
+    private final UserService userService;
 
     @PostMapping
     public ResponseEntity<Order> save(@RequestBody Order order){
@@ -45,5 +48,10 @@ public class OrderController {
     @GetMapping("/by-user/{id}")
     public ResponseEntity<Iterable<Order>> findByUserId(@PathVariable Integer id){
         return ResponseEntity.ok(orderService.findByUserId(id));
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<User> findUserById(@PathVariable Integer id){
+        return ResponseEntity.ok(userService.findById(id));
     }
 }

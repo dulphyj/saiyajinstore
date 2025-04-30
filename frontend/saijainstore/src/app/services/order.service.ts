@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Order } from '../common/order';
 import { Observable } from 'rxjs';
 import { HeaderService } from './header.service';
+import { User } from '../common/user';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class OrderService {
   constructor(private httpClient: HttpClient, private headerService: HeaderService) { }
 
   getOrders() {
-    return this.httpClient.get(this.orderUrl);
+    return this.httpClient.get(this.orderUrl, { headers: this.headerService.headers });
   }
 
   createOrder(order: Order): Observable<Order> {
@@ -32,5 +33,9 @@ export class OrderService {
 
   getOrderById(id: number): Observable<Order> {
     return this.httpClient.get<Order>(`${this.orderUrl}/${id}`, { headers: this.headerService.headers });
+  }
+
+  getUserById(id: number): Observable<User> {
+    return this.httpClient.get<User>(`${this.orderUrl}/user/${id}`, { headers: this.headerService.headers });
   }
 }

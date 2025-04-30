@@ -25,13 +25,13 @@ public class ProductController {
         return new ResponseEntity<>(productService.save(product), HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping({"/user", "/admin"})
     public ResponseEntity<Iterable<Product>> findAll(){
         log.info("Products found.");
         return ResponseEntity.ok(productService.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping({"/user/{id}", "/admin/{id}"})
     public ResponseEntity<Product> findById(@PathVariable Integer id){
         log.info("Product with id: {} found.", id);
         return ResponseEntity.ok(productService.findById(id));

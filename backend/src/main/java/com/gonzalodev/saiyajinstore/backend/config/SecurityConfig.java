@@ -20,7 +20,7 @@ import java.util.Arrays;
 @AllArgsConstructor
 public class SecurityConfig {
 
-    private static final String[] WHITE_LIST_URL = { "/api/v1/auth/**", "/v2/api-docs", "/v3/api-docs",
+    private static final String[] WHITE_LIST_URL = { "/api/payments/**", "/api/security/**", "/api/home/**", "/api/v1/auth/**", "/v2/api-docs", "/v3/api-docs",
             "/v3/api-docs/**", "/swagger-resources", "/swagger-resources/**", "/configuration/ui",
             "/configuration/security", "/swagger-ui/**", "/webjars/**", "/swagger-ui.html", "/api/auth/**",
             "/api/test/**", "/authenticate" };
@@ -46,11 +46,9 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()).authorizeHttpRequests(
                 aut -> aut
                         .requestMatchers(WHITE_LIST_URL).permitAll()
-                        .requestMatchers("/api/security/**").permitAll()
-                        .requestMatchers("/api/products").permitAll()
                         .requestMatchers("/api/products/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/products/**").hasRole("USER")
+                        .requestMatchers("/api/products/user/**").hasRole("USER")
                         .requestMatchers("/api/orders/**").hasRole("USER")
                         .anyRequest().authenticated()
         ).addFilterAfter(authorizationFilter, UsernamePasswordAuthenticationFilter.class);

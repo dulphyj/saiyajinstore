@@ -12,7 +12,6 @@ import { OrderService } from '../../../services/order.service';
 import { PaymetService } from '../../../services/paymet.service';
 import { DataPayment } from '../../../common/data-payment';
 import { SessionStorageService } from '../../../services/session-storage.service';
-
 @Component({
   selector: 'app-sumary-order',
   imports: [HeaderUserComponent, CommonModule],
@@ -28,15 +27,13 @@ export class SumaryOrderComponent implements OnInit {
   orderProducts: OrderProduct[] = [];
 
 
-  constructor(private cartService: CartService, private userService: UserService, private orderService: OrderService, private paymentService: PaymetService, private sessionStorage: SessionStorageService) { }
+  constructor(private cartService: CartService, private orderService: OrderService, private paymentService: PaymetService, private sessionStorage: SessionStorageService) { }
 
   ngOnInit(): void {
     this.initializeCart();
     console.log("initialized cart", this.items);
-    //this.user.id = this.sessionStorage.getItem('user').id;
-    this.userId = this.sessionStorage.getItem('user').id;
-
-    console.log(this.sessionStorage.getItem('user'));
+    this.userId = this.sessionStorage.getItem('userId');
+    console.log(this.userId);
     this.getUserById(this.userId);
   }
 
@@ -80,7 +77,7 @@ export class SumaryOrderComponent implements OnInit {
   }
 
   getUserById(id: number) {
-    this.userService.getUserById(id).subscribe(user => {
+    this.orderService.getUserById(id).subscribe(user => {
       this.user = user;
     });
   }

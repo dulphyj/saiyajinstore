@@ -7,16 +7,13 @@ import { SessionStorageService } from './session-storage.service';
 })
 export class HeaderService {
 
-  private token: string = '';
   public headers: HttpHeaders = new HttpHeaders;
 
-  constructor(private sesionStorage: SessionStorageService) {
-    this.token = this.sesionStorage.getItem('token').token;
-    this.headers = new HttpHeaders(
-      {
-        'Content-Type': 'application/json',
-        'Authorization': `${this.token}`
-      }
-    )
+  constructor(private sessionStorage: SessionStorageService) {
+    const userToken = this.sessionStorage.getItem('token');
+    const token = userToken?.token || '';
+    this.headers = new HttpHeaders({
+      'Authorization': `${token}`
+    });
   }
 }

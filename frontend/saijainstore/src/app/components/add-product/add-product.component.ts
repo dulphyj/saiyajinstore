@@ -40,7 +40,7 @@ export class AddProductComponent implements OnInit {
   ngOnInit(): void {
     this.getProductById();
     this.getCategories();
-    this.product.userId = this.sesionStorage.getItem('token').id;
+    this.product.userId = this.sesionStorage.getItem('userId');
 
   }
 
@@ -127,7 +127,9 @@ export class AddProductComponent implements OnInit {
               this.product.name = p.name;
               this.product.price = p.price;
               this.product.urlImage = p.urlImage ? p.urlImage : this.getDefaultImage();
+              this.product.userId = p.userId;
               this.product.categoryId = p.categoryId;
+              console.log(this.product);
             });
         }
       }

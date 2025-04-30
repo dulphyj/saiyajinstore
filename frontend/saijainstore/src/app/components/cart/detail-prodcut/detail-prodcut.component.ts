@@ -33,7 +33,7 @@ export class DetailProdcutComponent implements OnInit {
 
   getProduct() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.productService.getProductById(id).subscribe(prod => this.product = prod);
+    this.productService.getProductByIdAsUser(id).subscribe(prod => this.product = prod);
   }
 
   addCart() {
