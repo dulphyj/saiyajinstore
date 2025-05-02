@@ -6,6 +6,7 @@ import { User } from '../../common/user';
 import { UserService } from '../../services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { RouterModule } from '@angular/router';
+import { UserType } from '../../common/user-type';
 
 @Component({
   selector: 'app-users',
@@ -16,7 +17,7 @@ import { RouterModule } from '@angular/router';
 export class UsersComponent implements OnInit {
 
   users: User[] = [];
-
+  userTypes: string[] = Object.values(UserType);
   constructor(private userService: UserService, private toast: ToastrService) { }
 
   ngOnInit(): void {
@@ -29,10 +30,27 @@ export class UsersComponent implements OnInit {
   }
 
 
-  updateUser(user: any) {
-    // llamada al servicio para actualizar tipo de usuario
-    // después de actualizar:
+  updateUser(formData: FormData) {
+    this.userService.updateUser(formData)
+      .subscribe({
+        next: () => {
+          this.getAllUsers();
+          this.toast.info('Usuario actualizado exitosamente!', 'Updated');
+        },
+        error: (err) => {
+          this.toast.error('Error al actualizar el usuario', 'Error');
+        }
+      })
+
   }
+
+  submitUserUpdate(user: any) {
+    const formData = new FormData();
+    formData.append('id', user.id);
+    formData.append('userType', user.userType);
+    this.updateUser(formData);
+  }
+
 
   deleteUserById(userId: number) {
     console.log(userId);

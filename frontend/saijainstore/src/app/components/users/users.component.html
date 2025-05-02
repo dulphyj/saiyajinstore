@@ -20,13 +20,13 @@
                     <td class="align-middle">
                         <select [(ngModel)]="user.userType" (ngModelChange)="user.modified = true" class="form-select"
                             aria-label="User Type">
-                            <option value="USER">USER</option>
-                            <option value="ADMIN">ADMIN</option>
+                            <option *ngFor="let type of userTypes" [value]="type">{{ type }}</option>
                         </select>
                     </td>
 
                     <td class="align-middle">
-                        <button class="btn btn-primary btn-sm me-2" *ngIf="user.userType" (click)="updateUser(user)">
+                        <button class="btn btn-primary btn-sm me-2" *ngIf="user.userType"
+                            (click)="submitUserUpdate(user)">
                             <i class="bi bi-arrow-repeat"></i> Update
                         </button>
 

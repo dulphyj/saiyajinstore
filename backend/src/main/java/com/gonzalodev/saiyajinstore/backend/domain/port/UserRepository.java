@@ -8,5 +8,5 @@ public interface UserRepository {
     User findById(Integer id);
     Iterable<User> findAllUser();
     void deleteUserById(Integer id);
-    User updateUserById(Integer id);
+    User updateUserById(Integer id, String userType);
 }

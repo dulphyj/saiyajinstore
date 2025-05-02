@@ -16,7 +16,7 @@ export class AuthenticationService {
 
   register(user: User): Observable<User> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.httpClient.post<User>(`${this.apiUrl}/register`, user, { headers });
+    return this.httpClient.post<User>(`${this.apiUrl}/register`, user);
   }
 
   login(userDto: Userdto): Observable<JwtClient> {

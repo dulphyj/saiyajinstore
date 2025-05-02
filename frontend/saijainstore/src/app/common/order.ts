@@ -14,7 +14,6 @@ export class Order {
         let total = 0;
         this.orderProducts.forEach((orderProduct) => {
             total += orderProduct.price * orderProduct.quantity;
-            console.log("total ", total)
         });
         return total;
     }

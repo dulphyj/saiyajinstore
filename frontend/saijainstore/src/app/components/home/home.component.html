@@ -1,4 +1,8 @@
-<app-header-user />
+<app-header-admin *ngIf="userType === 'ADMIN'; else userHeader" />
+<ng-template #userHeader>
+    <app-header-user />
+</ng-template>
+
 
 <div class="container mt-4">
     <h2 class="text-center text-white bg-primary py-2 rounded">Product List</h2>

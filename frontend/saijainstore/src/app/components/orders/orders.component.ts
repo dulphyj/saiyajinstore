@@ -23,7 +23,15 @@ export class OrdersComponent implements OnInit {
 
   getOrders() {
     this.orderService.getOrders()
-      .subscribe(orders => this.orders = orders);
+      .subscribe(orders => {
+        this.orders = orders.map(o => new Order(
+          o.id,
+          new Date(o.dateCreated),
+          o.orderProducts,
+          o.userId ?? 0,
+          o.state
+        ))
+      });
   }
 
 }

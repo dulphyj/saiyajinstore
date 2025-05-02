@@ -49,7 +49,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/products/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/products/user/**").hasRole("USER")
-                        .requestMatchers("/api/orders/**").hasRole("USER")
+                        .requestMatchers("/api/orders/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated()
         ).addFilterAfter(authorizationFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();

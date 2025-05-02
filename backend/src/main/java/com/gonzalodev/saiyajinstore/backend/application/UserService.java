@@ -32,7 +32,7 @@ public class UserService {
         userRepository.deleteUserById(id);
     }
 
-    public User updateUserById(Integer id){
-        return userRepository.updateUserById(id);
+    public User updateUserById(Integer id, String userType){
+        return userRepository.updateUserById(id, userType);
     }
 }

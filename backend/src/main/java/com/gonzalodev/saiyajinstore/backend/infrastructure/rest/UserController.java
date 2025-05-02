@@ -42,4 +42,10 @@ public class UserController {
         userService.deleteUserById(id);
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/update")
+    public ResponseEntity updateUserById (@RequestParam Integer id, @RequestParam String userType){
+        userService.updateUserById(id, userType);
+        return ResponseEntity.ok().build();
+    }
 }

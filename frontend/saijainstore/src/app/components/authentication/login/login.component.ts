@@ -29,9 +29,11 @@ export class LoginComponent implements OnInit {
     let userDto = new Userdto(this.email, this.password);
     this.authentication.login(userDto).subscribe(
       response => {
-        this.sesionStorage.setItem('token', { token: response.token });
+        //this.sesionStorage.setItem('token', { token: response.token });
+        this.sesionStorage.setItem('token', response.token);
         this.sesionStorage.setItem('userId', response.id);
         this.sesionStorage.setItem('userType', response.type);
+        console.log("token:", response.token);
 
         if (!response.token) {
           this.toast.error("Invalid credentials", "Error", {
