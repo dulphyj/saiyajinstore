@@ -9,4 +9,9 @@ import { RouterModule } from '@angular/router';
 })
 export class HeaderAdminComponent {
   homeLink: string = '/';
+  usersLink: string = '/admin/users';
+  productsLink: string = '/admin/products';
+  categoriesLink: string = '/admin/categories';
+  ordersLink: string = '/admin/orders';
+  exitLink: string = '/logout';
 }

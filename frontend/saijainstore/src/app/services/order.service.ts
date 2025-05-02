@@ -15,8 +15,8 @@ export class OrderService {
 
   constructor(private httpClient: HttpClient, private headerService: HeaderService) { }
 
-  getOrders() {
-    return this.httpClient.get(this.orderUrl, { headers: this.headerService.headers });
+  getOrders(): Observable<Order[]> {
+    return this.httpClient.get<Order[]>(this.orderUrl, { headers: this.headerService.headers });
   }
 
   createOrder(order: Order): Observable<Order> {

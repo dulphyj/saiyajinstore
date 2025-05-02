@@ -33,14 +33,14 @@ export class CategoryComponent implements OnInit {
       .subscribe({
         next: () => {
           this.getCategories();
-          this.toastr.info('Category deleted successfully!', 'Deleted');
+          this.toastr.info('categoría eliminada exitosamente!', 'Deleted');
         },
         error: (err) => {
           console.error(err);
           if (err.status === 500) {
-            this.toastr.warning('Cannot delete category because it is in use by one or more products.', 'Warning');
+            this.toastr.warning('No se puede eliminar la categoría porque está siendo utilizada por uno o más productos.', 'Warning');
           } else {
-            this.toastr.error('An error occurred while deleting the category.', 'Error');
+            this.toastr.error('Se produjo un error al eliminar la categoría.', 'Error');
           }
         }
       })

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg" style="background-color: #0A174E; padding: 10px;">
-    <a class="navbar-brand fw-bold" routerLink={{homeLink}} routerLinkActive="router-link-active"
+    <a class="navbar-brand fw-bold" routerLink={{productsLink}} routerLinkActive="router-link-active"
         style="color: #F57C00; font-size: 24px;">Saijain Store</a>
 
     <div class="ms-auto dropdown">
@@ -8,13 +8,14 @@
             Admin
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#" style="color: #0A174E;">Users</a></li>
-            <li><a class="dropdown-item" href="#" style="color: #0A174E;">Products</a></li>
-            <li><a class="dropdown-item" href="#" style="color: #0A174E;">Orders</a></li>
+            <li><a class="dropdown-item" routerLink={{usersLink}} style="color: #0A174E;">Users</a></li>
+            <li><a class="dropdown-item" routerLink={{productsLink}} style="color: #0A174E;">Products</a></li>
+            <li><a class="dropdown-item" routerLink={{categoriesLink}} style="color: #0A174E;">Categories</a></li>
+            <li><a class="dropdown-item" routerLink={{ordersLink}} style="color: #0A174E;">Orders</a></li>
             <li>
                 <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item fw-bold" href="#" style="color: red;">Exit</a></li>
+            <li><a class="dropdown-item fw-bold" routerLink={{exitLink}} style="color: red;">Exit</a></li>
         </ul>
     </div>
 </nav>

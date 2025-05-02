@@ -9,18 +9,44 @@ import { SumaryOrderComponent } from './components/orders/sumary-order/sumary-or
 import { PaymentSuccesComponent } from './components/payment-succes/payment-succes.component';
 import { RegistrationComponent } from './components/authentication/registration/registration.component';
 import { LoginComponent } from './components/authentication/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { authGuard } from './guards/auth.guard';
+import { OrdersComponent } from './components/orders/orders.component';
+import { authAdminGuard } from './guards/auth-admin.guard';
 
 export const routes: Routes = [
+
     { path: '', component: HomeComponent },
-    { path: 'users', component: UsersComponent },
-    { path: 'admin/products', component: ProductListComponent },
-    { path: 'admin/products/addproduct', component: AddProductComponent },
-    { path: 'admin/products/updateproduct/:id', component: AddProductComponent },
-    { path: 'admin/categories', component: CategoryComponent },
-    { path: 'cart/detailproduct/:id', component: DetailProdcutComponent },
-    { path: 'cart/sumary', component: SumaryOrderComponent },
+    // ADMIN routes
+    {
+        path: 'admin',
+        canActivate: [authAdminGuard],
+        children: [
+            { path: 'users', component: UsersComponent },
+            { path: 'orders', component: OrdersComponent },
+            { path: 'products', component: ProductListComponent },
+            { path: 'products/addproduct', component: AddProductComponent },
+            { path: 'products/updateproduct/:id', component: AddProductComponent },
+            { path: 'categories', component: CategoryComponent }
+        ]
+    },
+
+    // USER routes
+    {
+        path: 'cart',
+        canActivate: [authGuard],
+        children: [
+            { path: 'detailproduct/:id', component: DetailProdcutComponent },
+            { path: 'sumary', component: SumaryOrderComponent }
+        ]
+    },
+
+    // Public routes
     { path: 'payment/success', component: PaymentSuccesComponent },
-    { path: 'user/register', component: RegistrationComponent },
+    { path: 'register', component: RegistrationComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'logout', component: LogoutComponent },
+
+    // Fallback
     { path: '**', redirectTo: '' }
 ];

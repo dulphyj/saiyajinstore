@@ -2,7 +2,6 @@ package com.gonzalodev.saiyajinstore.backend.infrastructure.rest;
 
 import com.gonzalodev.saiyajinstore.backend.application.UserService;
 import com.gonzalodev.saiyajinstore.backend.domain.model.User;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

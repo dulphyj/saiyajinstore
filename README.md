@@ -14,8 +14,8 @@ A Full Stack project using **Spring Boot (Backend)** and **Angular (Frontend)**.
 3. Open the application in your browser.
 
 ## 📌 Pending Tasks
-- Develop the entire frontend with Angular.
-- Implement authentication in the backend using JWT.
+- Develop the entire frontend with Angular. ✅
+- Implement authentication in the backend using JWT. ✅
 - Create a `docker-compose.yml` file for containerized deployment.
 - Deploy the application.
 

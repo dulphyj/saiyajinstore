@@ -6,21 +6,35 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card shadow-lg border-0 p-4" style="background-color: #fef3c7;">
-                <form (ngSubmit)="onSubmit()">
+                <form #form="ngForm" (ngSubmit)="onSubmit()">
 
                     <div class="mb-3">
                         <label for="email" class="form-label fw-bold text-primary">Email</label>
-                        <input [(ngModel)]="email" name="email" type="email" id="email" class="form-control" required>
+                        <input [(ngModel)]="email" name="email" type="email" id="email" class="form-control" required
+                            email #emailInput="ngModel" />
+                        <div *ngIf="emailInput.invalid && emailInput.touched" class="text-danger mt-1">
+                            Invalid email address
+                        </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="password" class="form-label fw-bold text-primary">Password</label>
                         <input [(ngModel)]="password" name="password" type="password" id="password" class="form-control"
-                            required>
+                            required minlength="4" #passwordInput="ngModel" />
+                        <div *ngIf="passwordInput.invalid && passwordInput.touched" class="text-danger mt-1">
+                            Password is required and must be at least 4 characters
+                        </div>
                     </div>
 
-                    <button type="submit" class="btn btn-warning w-100 fw-bold text-white mt-3">Login</button>
+                    <button type="submit" class="btn btn-warning w-100 fw-bold text-white mt-3"
+                        [disabled]="form.invalid">
+                        Login
+                    </button>
 
+                    <div class="text-center mt-3">
+                        <span>Don't have an account?</span>
+                        <a routerLink="/register" class="text-primary fw-bold">Sign up</a>
+                    </div>
                 </form>
             </div>
         </div>

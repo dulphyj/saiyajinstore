@@ -35,6 +35,9 @@ export class SumaryOrderComponent implements OnInit {
     this.userId = this.sessionStorage.getItem('userId');
     console.log(this.userId);
     this.getUserById(this.userId);
+    setTimeout(() => {
+      this.sessionStorage.removeItem('token');
+    }, 600000);
   }
 
   initializeCart() {
