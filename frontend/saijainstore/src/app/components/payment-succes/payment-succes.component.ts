@@ -3,14 +3,16 @@ import { HeaderUserComponent } from "../header-user/header-user.component";
 import { OrderService } from '../../services/order.service';
 import { SessionStorageService } from '../../services/session-storage.service';
 import { OrderState } from '../../common/order-state';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-payment-succes',
-  imports: [HeaderUserComponent],
+  imports: [HeaderUserComponent, RouterModule],
   templateUrl: './payment-succes.component.html',
   styleUrl: './payment-succes.component.css'
 })
 export class PaymentSuccesComponent implements OnInit {
+  homeLink: string = '/';
 
   constructor(private orderService: OrderService, private sessionStorage: SessionStorageService) { }
 
@@ -24,7 +26,6 @@ export class PaymentSuccesComponent implements OnInit {
     this.orderService.updateOrder(formData).subscribe(
       data => {
         console.log('Order updated successfully', data);
-
         this.sessionStorage.removeItem('order');
 
       }
