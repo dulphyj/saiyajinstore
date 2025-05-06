@@ -4,42 +4,30 @@
         <!-- Brand -->
         <a class="navbar-brand fw-bold text-warning" routerLink={{homeLink}} style="font-size: 24px;">Saijain Store</a>
 
-        <!-- Toggle button -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarUser"
-            aria-controls="navbarUser" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <!-- Navbar content -->
-        <div class="collapse navbar-collapse" id="navbarUser">
-
-            <!-- Left menu -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <!-- Search form -->
-                <form class="d-flex align-items-center me-3" (submit)="onSearch()">
-                    <input class="form-control me-2" type="search" placeholder="Search products..."
-                        [(ngModel)]="searchTerm" name="search" required>
-                    <button class="btn btn-outline-light" type="submit">Search</button>
-                </form>
-            </ul>
-
+        <div class="ms-auto ">
             <!-- User dropdown -->
-            <div class="dropdown">
-                <button class="btn dropdown-toggle fw-bold text-white" type="button" id="adminMenu"
-                    data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #F57C00;">
-                    User
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item text-primary" routerLink={{loginLink}}>Login</a></li>
-                    <li><a class="dropdown-item text-primary" routerLink={{homeLink}}>Products</a></li>
-                    <li><a class="dropdown-item text-primary" routerLink={{cartLink}}>Cart</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item fw-bold text-danger" routerLink="/logout">Exit</a></li>
-                </ul>
-            </div>
-
+            <a *ngIf="!token; else loggedin" routerLink={{loginLink}} class="text-white fw-bold">Login</a>
+            <ng-template #loggedin>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle fw-bold text-white" type="button" id="adminMenu"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #F57C00;">
+                        User
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item text-primary" routerLink={{homeLink}}>Products</a></li>
+                        <li><a class="dropdown-item text-primary" routerLink={{cartLink}}>Cart</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item fw-bold text-danger" routerLink="/logout">Exit</a></li>
+                    </ul>
+                </div>
+            </ng-template>
         </div>
+
+
+
     </div>
+
 </nav>

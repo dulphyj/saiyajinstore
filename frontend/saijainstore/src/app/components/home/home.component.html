@@ -4,22 +4,34 @@
 </ng-template>
 
 
-<div class="container mt-4">
-    <h2 class="text-center text-white bg-primary py-2 rounded">Product List</h2>
+<div class="container-fluid mt-0">
+    <div class="row vh-100">
+        <!-- Fil -->
+        <div class="col-12 col-md-2 px-3 bg-light" style="overflow-y: auto;">
+            <app-product-filters (filtersChanged)="onFiltersChanged($event)"></app-product-filters>
+        </div>
 
-    <div class="row">
-        <div class="col-md-4 mb-4" *ngFor="let item of products$ | async">
-            <div class="card shadow-lg border-0 h-100">
-                <div class="img-container">
-                    <img [src]="item.urlImage" class="card-img-top" alt="{{item.name}}">
-                </div>
-                <div class="card-body text-center d-flex flex-column">
-                    <h5 class="card-title">{{item.name}}</h5>
-                    <p class="card-text text-success fw-bold">{{item.price | currency}}</p>
-                    <a [routerLink]="[urlDetailProduct, item.id]" class="btn btn-primary mt-auto fw-bold">See
-                        product details</a>
+        <!-- products -->
+        <div class="col-md-10">
+            <div class="" style="width: 90%; margin: 0 auto;">
+
+                <h2 class="text-center text-white bg-primary py-2 rounded">Product List</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4 mb-4" *ngFor="let item of products$ | async">
+                        <div class="card shadow-lg border-0 h-100">
+                            <div class="img-container">
+                                <img [src]="item.urlImage" class="card-img-top" alt="{{item.name}}">
+                            </div>
+                            <div class="card-body text-center d-flex flex-column">
+                                <h5 class="card-title">{{item.name}}</h5>
+                                <p class="card-text text-success fw-bold">{{item.price | currency}}</p>
+                                <a [routerLink]="[urlDetailProduct, item.id]"
+                                    class="btn btn-primary mt-auto fw-bold">See
+                                    product details</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

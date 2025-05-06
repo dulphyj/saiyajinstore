@@ -1,0 +1,25 @@
+<div class="card p-3 shadow-sm h-100 border-0" style="position: sticky; top: 80px;">
+    <h5 class="text-center text-primary">Filter Products</h5>
+    <form (ngSubmit)="applyFilters()">
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input [(ngModel)]="filters.name" name="name" type="text" class="form-control" placeholder="Search name...">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Price</label>
+            <input [(ngModel)]="filters.price" name="price" type="number" class="form-control"
+                placeholder="Exact price">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select [(ngModel)]="filters.categoryId" name="categoryId" class="form-select" aria-label="Category select">
+                <option value="">All</option>
+                <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Apply Filters</button>
+    </form>
+</div>

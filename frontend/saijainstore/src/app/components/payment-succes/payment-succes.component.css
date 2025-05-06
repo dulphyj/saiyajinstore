@@ -1,0 +1,8 @@
+.succes-container {
+    background-image: url('../../../assets/img/succes.png');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 93vh;
+}

@@ -7,6 +7,8 @@ import com.gonzalodev.saiyajinstore.backend.infrastructure.mapper.ProductMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+
 @Repository
 @AllArgsConstructor
 public class ProductCRUDRepositoryImp implements ProductRepository {
@@ -36,5 +38,10 @@ public class ProductCRUDRepositoryImp implements ProductRepository {
                 ()-> new RuntimeException("Product with id: "+id+" no found")
         );
         productCRUDRepository.deleteById(id);
+    }
+
+    @Override
+    public Iterable<Product> searchProducts(String name, BigDecimal price, Integer categoryId) {
+        return productMapper.toProductList(productCRUDRepository.search(name, price, categoryId));
     }
 }

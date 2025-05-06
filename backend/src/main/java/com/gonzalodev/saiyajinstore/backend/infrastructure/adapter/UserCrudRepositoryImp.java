@@ -1,13 +1,11 @@
 package com.gonzalodev.saiyajinstore.backend.infrastructure.adapter;
 
-import com.gonzalodev.saiyajinstore.backend.domain.model.OrderState;
 import com.gonzalodev.saiyajinstore.backend.domain.model.User;
 import com.gonzalodev.saiyajinstore.backend.domain.model.UserType;
 import com.gonzalodev.saiyajinstore.backend.domain.port.UserRepository;
 import com.gonzalodev.saiyajinstore.backend.infrastructure.mapper.UserMapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.Locale;
 
 @Repository
 public class UserCrudRepositoryImp implements UserRepository {

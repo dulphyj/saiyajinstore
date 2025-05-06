@@ -1,6 +1,5 @@
 package com.gonzalodev.saiyajinstore.backend.infrastructure.entity;
 
-import com.gonzalodev.saiyajinstore.backend.domain.model.OrderProduct;
 import com.gonzalodev.saiyajinstore.backend.domain.model.OrderState;
 import jakarta.persistence.*;
 import lombok.Data;

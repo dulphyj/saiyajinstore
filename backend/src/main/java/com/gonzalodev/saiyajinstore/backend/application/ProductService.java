@@ -3,11 +3,14 @@ package com.gonzalodev.saiyajinstore.backend.application;
 import com.gonzalodev.saiyajinstore.backend.config.AppConstants;
 import com.gonzalodev.saiyajinstore.backend.domain.model.Product;
 import com.gonzalodev.saiyajinstore.backend.domain.port.ProductRepository;
+import com.gonzalodev.saiyajinstore.backend.infrastructure.entity.ProductEntity;
 import lombok.AllArgsConstructor;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
@@ -24,6 +27,10 @@ public class ProductService {
 
     public Iterable<Product> findAll(){
         return productRepository.findAll();
+    }
+
+    public Iterable<Product> search(String name, BigDecimal price, Integer categoryId){
+        return productRepository.searchProducts(name, price,categoryId);
     }
 
     public Product findById(Integer id){

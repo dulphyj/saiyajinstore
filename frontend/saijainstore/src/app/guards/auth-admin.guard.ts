@@ -12,5 +12,5 @@ export const authAdminGuard: CanActivateFn = (route, state) => {
   if (token && type === 'ADMIN') {
     return true;
   }
-  return router.createUrlTree(['/login']);
+  return router.createUrlTree(['/error']);
 };

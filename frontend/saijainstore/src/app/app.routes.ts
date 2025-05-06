@@ -13,6 +13,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { authGuard } from './guards/auth.guard';
 import { OrdersComponent } from './components/orders/orders.component';
 import { authAdminGuard } from './guards/auth-admin.guard';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 export const routes: Routes = [
 
@@ -47,6 +48,9 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: LogoutComponent },
 
+    //error routes
+    { path: 'error', component: ErrorPageComponent },
+
     // Fallback
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: 'error' }
 ];
