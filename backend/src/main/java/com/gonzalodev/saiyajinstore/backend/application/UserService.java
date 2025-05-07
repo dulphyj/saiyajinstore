@@ -13,15 +13,27 @@ public class UserService {
     }
 
     public User save(User user){
-        return userRepository.save(user);
+        try {
+            return userRepository.save(user);
+        } catch (Exception e){
+            throw new RuntimeException("Error saving user", e);
+        }
     }
 
     public User findById(Integer id){
-        return userRepository.findById(id);
+        try {
+            return userRepository.findById(id);
+        } catch (Exception e){
+            throw new RuntimeException("Error finding user", e);
+        }
     }
 
     public User findByEmail(String email){
-        return userRepository.findByEmail(email);
+        try {
+            return userRepository.findByEmail(email);
+        } catch (Exception e){
+            throw new RuntimeException("Error finding user by email", e);
+        }
     }
 
     public Iterable<User> findAllUsers(){
@@ -29,10 +41,18 @@ public class UserService {
     }
 
     public void deleteUserById(Integer id){
-        userRepository.deleteUserById(id);
+        try {
+            userRepository.deleteUserById(id);
+        } catch (Exception e){
+            throw new RuntimeException("Error deleting user", e);
+        }
     }
 
     public User updateUserById(Integer id, String userType){
-        return userRepository.updateUserById(id, userType);
+        try {
+            return userRepository.updateUserById(id, userType);
+        } catch (Exception e){
+            throw new RuntimeException("Error updating user", e);
+        }
     }
 }

@@ -13,7 +13,11 @@ public class CategoryService {
     }
 
     public Category save(Category category){
-        return categoryRepository.save(category);
+        try {
+            return categoryRepository.save(category);
+        } catch (Exception e){
+            throw new RuntimeException("Error saving category", e);
+        }
     }
 
     public Iterable<Category> findAll(){
@@ -21,10 +25,18 @@ public class CategoryService {
     }
 
     public Category findById(Integer id){
-        return categoryRepository.findById(id);
+        try {
+            return categoryRepository.findById(id);
+        } catch (Exception e){
+            throw new RuntimeException("Error finding category", e);
+        }
     }
 
     public void deleteById(Integer id){
-        categoryRepository.deleteById(id);
+        try {
+            categoryRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Error deleting category with id " + id, e);
+        }
     }
 }

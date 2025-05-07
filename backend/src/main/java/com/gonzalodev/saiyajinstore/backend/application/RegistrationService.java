@@ -11,7 +11,11 @@ public class RegistrationService {
     private final UserRepository userRepository;
 
     public User register(User user){
-        return userRepository.save(user);
+        try {
+            return userRepository.save(user);
+        } catch (Exception e){
+            throw new RuntimeException("Error register user", e);
+        }
     }
 
 }

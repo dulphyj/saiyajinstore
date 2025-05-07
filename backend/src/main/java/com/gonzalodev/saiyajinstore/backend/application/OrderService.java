@@ -11,7 +11,11 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
     public Order save (Order order){
-        return orderRepository.save(order);
+        try {
+            return orderRepository.save(order);
+        } catch (Exception e){
+            throw new RuntimeException("Error saving order", e);
+        }
     }
 
     public Iterable<Order> findAll(){
@@ -19,15 +23,27 @@ public class OrderService {
     }
 
     public Iterable<Order> findByUserId(Integer userId){
-        return orderRepository.findByUserId(userId);
+        try {
+            return orderRepository.findByUserId(userId);
+        } catch (Exception e){
+            throw new RuntimeException("Error finding order", e);
+        }
     }
 
     public void updateStateById(Integer id, String state){
-        orderRepository.updateStateById(id, state);
+        try {
+            orderRepository.updateStateById(id, state);
+        } catch (Exception e){
+            throw new RuntimeException("Error updating order", e);
+        }
     }
 
     public Order findById(Integer id){
-        return orderRepository.findById(id);
+        try {
+            return orderRepository.findById(id);
+        } catch (Exception e){
+            throw new RuntimeException("Error finding order", e);
+        }
     }
 
 }

@@ -43,4 +43,5 @@ public class CloudinaryService {
         return filename.split("\\.")[0];
     }
 
+
 }

@@ -3,9 +3,7 @@ package com.gonzalodev.saiyajinstore.backend.application;
 import com.gonzalodev.saiyajinstore.backend.config.AppConstants;
 import com.gonzalodev.saiyajinstore.backend.domain.model.Product;
 import com.gonzalodev.saiyajinstore.backend.domain.port.ProductRepository;
-import com.gonzalodev.saiyajinstore.backend.infrastructure.entity.ProductEntity;
 import lombok.AllArgsConstructor;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,7 +20,11 @@ public class ProductService {
     private static final String image_default = AppConstants.DEFAULT_CLOUDINARY_IMAGE_PUBLIC_ID;
 
     public Product save(Product product) {
-        return productRepository.save(product);
+        try {
+            return productRepository.save(product);
+        } catch (Exception e) {
+            throw new RuntimeException("Error saving product", e);
+        }
     }
 
     public Iterable<Product> findAll(){
@@ -30,7 +32,11 @@ public class ProductService {
     }
 
     public Iterable<Product> search(String name, BigDecimal price, Integer categoryId){
-        return productRepository.searchProducts(name, price,categoryId);
+        try {
+            return productRepository.searchProducts(name, price, categoryId);
+        } catch (Exception e) {
+            throw new RuntimeException("Error searching products", e);
+        }
     }
 
     public Product findById(Integer id){
