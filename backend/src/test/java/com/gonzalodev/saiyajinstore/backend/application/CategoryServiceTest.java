@@ -30,7 +30,8 @@ public class CategoryServiceTest {
 
     @Test
     void save_ShouldReturnSavedCategory() {
-        Category category = new Category(1, "test", LocalDateTime.parse("2025-06-05T00:00:00"), LocalDateTime.parse("2025-06-05T01:00:00"));
+        LocalDateTime time = LocalDateTime.now();
+        Category category = new Category(1, "test", time, time);
 
         when(categoryRepository.save(category)).thenReturn(category);
 
@@ -42,8 +43,9 @@ public class CategoryServiceTest {
 
     @Test
     void findAll_ShouldReturnAllCategories() {
-        Category c1 = new Category(1, "test", LocalDateTime.parse("2025-06-05T00:00:00"), LocalDateTime.parse("2025-06-05T01:00:00"));
-        Category c2 = new Category(2, "other", LocalDateTime.parse("2025-06-05T00:00:00"), LocalDateTime.parse("2025-06-05T01:00:00"));
+        LocalDateTime time = LocalDateTime.now();
+        Category c1 = new Category(1, "test", time, time);
+        Category c2 = new Category(2, "other", time, time);
 
         List<Category> categories = Arrays.asList(c1, c2);
         when(categoryRepository.findAll()).thenReturn(categories);
@@ -57,7 +59,8 @@ public class CategoryServiceTest {
 
     @Test
     void findById_ShouldReturnCategory() {
-        Category category = new Category(1, "test", LocalDateTime.parse("2025-06-05T00:00:00"), LocalDateTime.parse("2025-06-05T01:00:00"));
+        LocalDateTime time = LocalDateTime.now();
+        Category category = new Category(1, "test", time, time);
 
         when(categoryRepository.findById(1)).thenReturn(category);
 

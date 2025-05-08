@@ -42,6 +42,4 @@ public class CloudinaryService {
         String filename = parts[parts.length -1];
         return filename.split("\\.")[0];
     }
-
-
 }

@@ -31,7 +31,8 @@ public class UserServiceTest {
 
     @Test
     void save_ShouldReturnUser(){
-        User user = new User(1, "testUserName", "testFirstName", "testLastName", "test@mail.com", "12345", UserType.USER, LocalDateTime.parse("2025-06-05T00:00:00"), LocalDateTime.parse("2025-06-05T10:00:00"));
+        LocalDateTime time = LocalDateTime.now();
+        User user = new User(1, "testUserName", "testFirstName", "testLastName", "test@mail.com", "12345", UserType.USER, time, time);
 
         when(userRepository.save(user)).thenReturn(user);
 
@@ -44,7 +45,8 @@ public class UserServiceTest {
 
     @Test
     void findById_shouldReturnUser(){
-        User user = new User(1, "testUserName", "testFirstName", "testLastName", "test@mail.com", "12345", UserType.USER, LocalDateTime.parse("2025-06-05T00:00:00"), LocalDateTime.parse("2025-06-05T10:00:00"));
+        LocalDateTime time = LocalDateTime.now();
+        User user = new User(1, "testUserName", "testFirstName", "testLastName", "test@mail.com", "12345", UserType.USER, time, time);
 
         when(userRepository.findById(1)).thenReturn(user);
 
@@ -57,8 +59,9 @@ public class UserServiceTest {
 
     @Test
     void findAllUsers_shouldReturnListUsers(){
-        User user = new User(1, "testUserName", "testFirstName", "testLastName", "test@mail.com", "12345", UserType.USER, LocalDateTime.parse("2025-06-05T00:00:00"), LocalDateTime.parse("2025-06-05T10:00:00"));
-        User user2 = new User(2, "testUserName2", "testFirstName2", "testLastName2", "test2@mail.com", "12345", UserType.USER, LocalDateTime.parse("2025-06-05T00:00:00"), LocalDateTime.parse("2025-06-05T10:00:00"));
+        LocalDateTime time = LocalDateTime.now();
+        User user = new User(1, "testUserName", "testFirstName", "testLastName", "test@mail.com", "12345", UserType.USER, time, time);
+        User user2 = new User(2, "testUserName2", "testFirstName2", "testLastName2", "test2@mail.com", "12345", UserType.USER, time, time);
 
         List<User> users = Arrays.asList(user, user2);
         when(userRepository.findAllUser()).thenReturn(users);

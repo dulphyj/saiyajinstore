@@ -2,12 +2,15 @@ package com.gonzalodev.saiyajinstore.backend.application;
 
 import com.gonzalodev.saiyajinstore.backend.domain.model.User;
 import com.gonzalodev.saiyajinstore.backend.domain.model.UserType;
+import com.gonzalodev.saiyajinstore.backend.domain.port.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -27,20 +30,15 @@ public class CustomUserDetailServiceTest {
 
     @Test
     void testLoadUserByEmail_success(){
-        String email = "test@test.com";
-        String password = "password";
+        LocalDateTime time = LocalDateTime.now();
+        User user = new User(1, "test", "testN", "testL", "test@mail.com", "testP", UserType.USER, time, time);
 
-        User user = new User();
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setUserType(UserType.USER);
+        when(userService.findByEmail(user.getEmail())).thenReturn(user);
 
-        when(userService.findByEmail(email)).thenReturn(user);
+        UserDetails userDetails = customUserDetailService.loadUserByUsername(user.getEmail());
 
-        UserDetails userDetails = customUserDetailService.loadUserByUsername(email);
-
-        assertEquals(email, userDetails.getUsername());
-        assertEquals(password, userDetails.getPassword());
+        assertEquals(user.getEmail(), userDetails.getUsername());
+        assertEquals(user.getPassword(), userDetails.getPassword());
         assertTrue(userDetails.getAuthorities().stream()
                 .anyMatch(auth -> auth.getAuthority().equals("ROLE_USER")));
     }

@@ -33,11 +33,12 @@ public class OrderServiceTest {
 
     @Test
     void save_ShouldReturnSavedOrder(){
+        LocalDateTime time = LocalDateTime.now();
         List<OrderProduct> orderProducts = List.of(
                 new OrderProduct(1, new BigDecimal("2"), new BigDecimal("50.00"), 1),
                 new OrderProduct(2, new BigDecimal("1"), new BigDecimal("30.00"), 2)
         );
-        Order order = new Order(1, LocalDateTime.parse("2025-06-05T00:00:00"), orderProducts, OrderState.CANCELLED, 1);
+        Order order = new Order(1, time, orderProducts, OrderState.CANCELLED, 1);
 
         when(orderRepository.save(order)).thenReturn(order);
 
@@ -49,17 +50,18 @@ public class OrderServiceTest {
 
     @Test
     void findAll_ShouldReturnAllOrders(){
+        LocalDateTime time = LocalDateTime.now();
         List<OrderProduct> orderProducts = List.of(
                 new OrderProduct(1, new BigDecimal("2"), new BigDecimal("50.00"), 1),
                 new OrderProduct(2, new BigDecimal("1"), new BigDecimal("30.00"), 2)
         );
-        Order order = new Order(1, LocalDateTime.parse("2025-06-05T00:00:00"), orderProducts, OrderState.CANCELLED, 1);
+        Order order = new Order(1, time, orderProducts, OrderState.CANCELLED, 1);
 
         List<OrderProduct> orderProducts2 = List.of(
                 new OrderProduct(3, new BigDecimal("2"), new BigDecimal("50.00"), 1),
                 new OrderProduct(4, new BigDecimal("1"), new BigDecimal("30.00"), 2)
         );
-        Order order2 = new Order(2, LocalDateTime.parse("2025-06-05T00:00:00"), orderProducts, OrderState.CANCELLED, 1);
+        Order order2 = new Order(2, time, orderProducts, OrderState.CANCELLED, 1);
 
         List<Order> orders = Arrays.asList(order, order2);
         when(orderRepository.findAll()).thenReturn(orders);
@@ -73,17 +75,18 @@ public class OrderServiceTest {
 
     @Test
     void findByUserId_ShouldReturnOrderByUserId(){
+        LocalDateTime time = LocalDateTime.now();
         List<OrderProduct> orderProducts = List.of(
                 new OrderProduct(1, new BigDecimal("2"), new BigDecimal("50.00"), 1),
                 new OrderProduct(2, new BigDecimal("1"), new BigDecimal("30.00"), 2)
         );
-        Order order = new Order(1, LocalDateTime.parse("2025-06-05T00:00:00"), orderProducts, OrderState.CANCELLED, 1);
+        Order order = new Order(1, time, orderProducts, OrderState.CANCELLED, 1);
 
         List<OrderProduct> orderProducts2 = List.of(
                 new OrderProduct(3, new BigDecimal("2"), new BigDecimal("50.00"), 1),
                 new OrderProduct(4, new BigDecimal("1"), new BigDecimal("30.00"), 2)
         );
-        Order order2 = new Order(2, LocalDateTime.parse("2025-06-05T00:00:00"), orderProducts, OrderState.CANCELLED, 1);
+        Order order2 = new Order(2, time, orderProducts, OrderState.CANCELLED, 1);
 
         List<Order> orders = Arrays.asList(order, order2);
         when(orderRepository.findByUserId(1)).thenReturn(orders);
@@ -98,11 +101,12 @@ public class OrderServiceTest {
 
     @Test
     void updateStateById_shouldReturnOrderUpdated(){
+        LocalDateTime time = LocalDateTime.now();
         List<OrderProduct> orderProducts = List.of(
                 new OrderProduct(1, new BigDecimal("2"), new BigDecimal("50.00"), 1),
                 new OrderProduct(2, new BigDecimal("1"), new BigDecimal("30.00"), 2)
         );
-        Order order = new Order(1, LocalDateTime.parse("2025-06-05T00:00:00"), orderProducts, OrderState.CANCELLED, 1);
+        Order order = new Order(1, time, orderProducts, OrderState.CANCELLED, 1);
 
         doNothing().when(orderRepository).updateStateById(1, "CONFIRMED");
 
@@ -113,11 +117,12 @@ public class OrderServiceTest {
 
     @Test
     void findById_ShouldReturnOrderById(){
+        LocalDateTime time = LocalDateTime.now();
         List<OrderProduct> orderProducts = List.of(
                 new OrderProduct(1, new BigDecimal("2"), new BigDecimal("50.00"), 1),
                 new OrderProduct(2, new BigDecimal("1"), new BigDecimal("30.00"), 2)
         );
-        Order order = new Order(1, LocalDateTime.parse("2025-06-05T00:00:00"), orderProducts, OrderState.CANCELLED, 1);
+        Order order = new Order(1, time, orderProducts, OrderState.CANCELLED, 1);
 
         when(orderRepository.findById(1)).thenReturn(order);
 

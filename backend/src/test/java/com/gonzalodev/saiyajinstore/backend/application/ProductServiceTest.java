@@ -36,7 +36,8 @@ public class ProductServiceTest {
 
     @Test
     void save_shouldReturnProduct(){
-        Product product = new Product(1, "test", "codeT", "descriptionTest", "url.test", new BigDecimal("50.00"), LocalDateTime.parse("2025-06-05T00:00:00"), LocalDateTime.parse("2025-06-05T01:00:00"), 1, 1);
+        LocalDateTime time = LocalDateTime.now();
+        Product product = new Product(1, "test", "codeT", "descriptionTest", "url.test", new BigDecimal("50.00"), time, time, 1, 1);
 
         when(productRepository.save(product)).thenReturn(product);
 
@@ -48,8 +49,9 @@ public class ProductServiceTest {
 
     @Test
     void findAll_shouldReturnAllProducts(){
-        Product product = new Product(1, "test", "codeT", "descriptionTest", "url.test", new BigDecimal("50.00"), LocalDateTime.parse("2025-06-05T00:00:00"), LocalDateTime.parse("2025-06-05T01:00:00"), 1, 1);
-        Product product2 = new Product(2, "test2", "codeT2", "descriptionTest2", "url.test2", new BigDecimal("50.00"), LocalDateTime.parse("2025-06-05T00:00:00"), LocalDateTime.parse("2025-06-05T01:00:00"), 1, 1);
+        LocalDateTime time = LocalDateTime.now();
+        Product product = new Product(1, "test", "codeT", "descriptionTest", "url.test", new BigDecimal("50.00"), time, time, 1, 1);
+        Product product2 = new Product(2, "test2", "codeT2", "descriptionTest2", "url.test2", new BigDecimal("50.00"), time, time, 1, 1);
 
         List<Product> products = Arrays.asList(product, product2);
         when(productRepository.findAll()).thenReturn(products);
@@ -63,9 +65,10 @@ public class ProductServiceTest {
 
     @Test
     void serach_shouldReturnFilteredProduct(){
+        LocalDateTime time = LocalDateTime.now();
         BigDecimal price = new BigDecimal("50.00");
-        Product product = new Product(1, "test", "codeT", "descriptionTest", "url.test", new BigDecimal("50.00"), LocalDateTime.parse("2025-06-05T00:00:00"), LocalDateTime.parse("2025-06-05T01:00:00"), 1, 1);
-        Product product2 = new Product(2, "test2", "codeT2", "descriptionTest2", "url.test2", new BigDecimal("50.00"), LocalDateTime.parse("2025-06-05T00:00:00"), LocalDateTime.parse("2025-06-05T01:00:00"), 1, 1);
+        Product product = new Product(1, "test", "codeT", "descriptionTest", "url.test", new BigDecimal("50.00"), time, time, 1, 1);
+        Product product2 = new Product(2, "test2", "codeT2", "descriptionTest2", "url.test2", new BigDecimal("50.00"), time, time, 1, 1);
 
         List<Product> products = Arrays.asList(product, product2);
         when(productRepository.searchProducts("test", price, 1)).thenReturn(products);
@@ -80,7 +83,8 @@ public class ProductServiceTest {
 
     @Test
     void findById_shouldReturnProduct(){
-        Product product = new Product(1, "test", "codeT", "descriptionTest", "url.test", new BigDecimal("50.00"), LocalDateTime.parse("2025-06-05T00:00:00"), LocalDateTime.parse("2025-06-05T01:00:00"), 1, 1);
+        LocalDateTime time = LocalDateTime.now();
+        Product product = new Product(1, "test", "codeT", "descriptionTest", "url.test", new BigDecimal("50.00"), time, time, 1, 1);
 
         when(productRepository.findById(1)).thenReturn(product);
 
