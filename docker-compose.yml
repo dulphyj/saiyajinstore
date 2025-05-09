@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: saiyajin-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: saiyajin
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    networks:
+      - saiyajin-network
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+    container_name: saiyajin-backend
+    depends_on:
+      - db
+    environment:
+      PORT: ${PORT}
+      DB_URL: ${DB_URL}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      CLOUDINARY_CLOUD_NAME: ${CLOUDINARY_CLOUD_NAME}
+      CLOUDINARY_API_KEY: ${CLOUDINARY_API_KEY}
+      CLOUDINARY_API_SECRET: ${CLOUDINARY_API_SECRET}
+      PAYPAL_CLIENT_ID: ${PAYPAL_CLIENT_ID}
+      PAYPAL_CLIENT_SECRET: ${PAYPAL_CLIENT_SECRET}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION: ${JWT_EXPIRATION}
+    ports:
+      - "${PORT}:${PORT}"
+    networks:
+      - saiyajin-network
+
+  frontend:
+    build:
+      context: ./frontend/saijainstore
+    container_name: saiyajin-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - saiyajin-network
+
+volumes:
+  postgres-data:
+
+
+networks:
+  saiyajin-network:
+    driver: bridge

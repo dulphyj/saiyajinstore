@@ -8,9 +8,17 @@
 /backend/.vscode
 /backend/logs/
 /backend/tmp/
-# Ignore sensitive Spring Boot configuration
+
+# Ignore only the development Spring Boot configuration
 backend/src/main/resources/application-dev.properties
-backend/src/main/resources/application-pdn.properties
+
+# Do NOT ignore application.properties and application-pdn.properties
+# Make sure to REMOVE them from cache if they were ignored previously:
+# git rm --cached backend/src/main/resources/application-pdn.properties
+# git rm --cached backend/src/main/resources/application.properties
+
+# Ignore .env files (they contain secrets)
+.env
 
 # Frontend
 /frontend/node_modules/
@@ -18,11 +26,11 @@ backend/src/main/resources/application-pdn.properties
 /frontend/.angular/
 /frontend/.idea/
 /frontend/.vscode
-# Ignore Angular environment configuration files
-/frontend/saijainstore/src/environments/environment.ts
-/frontend/saijainstore/src/environments/environment.prod.ts
 
+# Ignore Angular environment configuration files
+/frontend/saijainstore/src/environments/environment.prod.ts
 
 # General
 .DS_Store
 *.log
+

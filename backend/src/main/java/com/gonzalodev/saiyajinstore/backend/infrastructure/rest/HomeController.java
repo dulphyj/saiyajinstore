@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @ControllerAdvice
 @RestController
 @RequestMapping("/api/home")
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "*")
 @AllArgsConstructor
 public class HomeController {
     private final ProductService productService;
