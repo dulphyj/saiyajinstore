@@ -1,10 +1,13 @@
-FROM maven:3.9.7-eclipse-temurin-17-alpine AS builder
+# Fase de construcción
+FROM maven:3.9-eclipse-temurin-17 as builder
 WORKDIR /app
-COPY . .
+COPY pom.xml .
+COPY src ./src
 RUN mvn clean package -DskipTests
 
+# Fase de ejecución
 FROM openjdk:17-jdk-slim
-ARG JAR_FILE=target/backend-0.0.1-SNAPSHOT.jar
-COPY ${JAR_FILE} backend.jar
+WORKDIR /app
+COPY --from=builder /app/target/backend-0.0.1-SNAPSHOT.jar backend.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "backend.jar"]

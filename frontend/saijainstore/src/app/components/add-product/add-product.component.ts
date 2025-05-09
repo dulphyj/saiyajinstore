@@ -129,7 +129,7 @@ export class AddProductComponent implements OnInit {
               this.product.urlImage = p.urlImage ? p.urlImage : this.getDefaultImage();
               this.product.userId = p.userId;
               this.product.categoryId = p.categoryId;
-              console.log(this.product);
+              //console.log(this.product);
             });
         }
       }

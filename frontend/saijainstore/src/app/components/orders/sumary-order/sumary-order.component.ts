@@ -31,9 +31,9 @@ export class SumaryOrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeCart();
-    console.log("initialized cart", this.items);
+    //console.log("initialized cart", this.items);
     this.userId = this.sessionStorage.getItem('userId');
-    console.log(this.userId);
+    //console.log(this.userId);
     this.getUserById(this.userId);
     setTimeout(() => {
       this.sessionStorage.removeItem('token');
@@ -52,10 +52,10 @@ export class SumaryOrderComponent implements OnInit {
     const order = new Order(null, new Date(), this.orderProducts, this.userId, OrderState.CANCELLED);
     this.orderService.createOrder(order).subscribe(
       data => {
-        console.log('Order created successfully', data);
+        //console.log('Order created successfully', data);
         //sstorage
         this.sessionStorage.setItem('order', data);
-        console.log(this.sessionStorage.getItem('order'));
+        //console.log(this.sessionStorage.getItem('order'));
       }
     )
 

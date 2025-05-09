@@ -23,8 +23,4 @@ export class HeaderUserComponent implements OnInit {
   ngOnInit(): void {
     this.token = this.sessionStorage.getItem('token');
   }
-  onSearch() {
-    throw new Error('Method not implemented.');
-  }
-
 }

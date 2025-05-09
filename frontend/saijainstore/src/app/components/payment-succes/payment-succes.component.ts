@@ -25,7 +25,7 @@ export class PaymentSuccesComponent implements OnInit {
 
     this.orderService.updateOrder(formData).subscribe(
       data => {
-        console.log('Order updated successfully', data);
+        //console.log('Order updated successfully', data);
         this.sessionStorage.removeItem('order');
 
       }

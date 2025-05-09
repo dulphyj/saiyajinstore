@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     //this.productService.getAllProducts().subscribe(products => this.products = products);
     this.userType = this.sessionStorage.getItem('userType');
-    console.log(this.userType, this.sessionStorage.getItem('userId'));
+    //console.log(this.userType, this.sessionStorage.getItem('userId'));
   }
 
   onFiltersChanged(filters: any) {

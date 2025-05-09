@@ -44,11 +44,11 @@ export class DetailProdcutComponent implements OnInit {
         this.product.price,
         this.quantity,
       );
-      console.log('before ', item, 'total ', this.cartService.totalCart());
+      //console.log('before ', item, 'total ', this.cartService.totalCart());
       this.cartService.addItemCart(item);
       this.cartService.totalCart();
-      console.log('after ', item, 'total ', this.cartService.totalCart());
-      console.log('list product ', item);
+      //console.log('after ', item, 'total ', this.cartService.totalCart());
+      //console.log('list product ', item);
       this.toastr.success('Product added to cart!', 'Success');
     }
   }

@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         this.sesionStorage.setItem('token', response.token);
         this.sesionStorage.setItem('userId', response.id);
         this.sesionStorage.setItem('userType', response.type);
-        console.log("token:", response.token);
+        //console.log("token:", response.token);
 
         if (!response.token) {
           this.toast.error("Invalid credentials", "Error", {
