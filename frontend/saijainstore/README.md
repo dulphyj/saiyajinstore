@@ -1,59 +1,98 @@
-# Saijainstore
+# 🎨 Saiyajin Store - Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.3.
+This is the frontend of the **Saiyajin Store** project, built with **Angular 18**. It consumes a REST API provided by the Spring Boot backend and provides a full e-commerce experience including product browsing, cart management, user registration/login, PayPal payments, and an admin panel.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Features
 
+- 🛍️ Product browsing and filtering
+- 🛒 Cart and checkout flow
+- 👤 User registration and login
+- 🔒 Route protection using guards
+- 🧾 Authenticated requests with interceptors
+- 💳 PayPal integration for payments
+- ⚙️ Admin panel for managing:
+  - Products
+  - Categories
+  - Users
+  - Orders
+
+---
+
+## 🧰 Technologies Used
+
+- Angular 18+
+- TypeScript
+- Bootstrap
+- Angular Router
+- Angular Services for API consumption
+- Interceptors for JWT header handling
+- Route Guards for access control
+- ngx-toastr for notifications
+
+---
+
+## 📦 Running the App Locally
+
+1. Go into the project directory:
+
+```bash
+cd frontend/saijainstore
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+4. Open your browser and go to:
 
-## Code scaffolding
+http://localhost:4200
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## ⚙️ Environment Configuration
 
-```bash
-ng generate component component-name
-```
+Edit the environment files:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+src/environments/environment.ts
 
-```bash
-ng generate --help
-```
+src/environments/environment.prod.ts
 
-## Building
-
-To build the project run:
+Example content:
 
 ```bash
-ng build
+export const environment = {
+  production: false,
+  apiBaseUrl: 'http://localhost:8080/api/v1'
+};
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 🔐 Security
 
-## Running unit tests
+**Guards:** Restrict access to certain routes (e.g., admin panel, user dashboard)
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+**Interceptors:** Automatically attach JWT tokens to outgoing HTTP requests via the Authorization header
 
-```bash
-ng test
-```
 
-## Running end-to-end tests
+## 🧪 Testing
+📝 There are currently no unit or e2e tests configured.
 
-For end-to-end (e2e) testing, run:
+## 🧼 Code Style
 
-```bash
-ng e2e
-```
+- TypeScript best practices
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- Separation of concerns using components, services, and modules
 
-## Additional Resources
+- Responsive UI using Bootstrap
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 📌 Notes
+
+The app relies on the backend being available at the API base URL defined in the environment files
+
+Make sure the backend is running before using the frontend
+
