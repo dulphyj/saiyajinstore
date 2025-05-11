@@ -57,6 +57,8 @@ JWT_SECRET=your-jwt-secret
 JWT_EXPIRATION=600000
 ```
 
+---
+
 ## ▶️ Running the Backend
 
 **Docker**
@@ -87,6 +89,8 @@ Or if Maven is installed globally:
 mvn spring-boot:run
 ```
 
+---
+
 ## 🔐 Security
 
 - Route protection using JWT
@@ -96,6 +100,8 @@ mvn spring-boot:run
 - Token must be included in Authorization header for protected routes
 
 - Token expiration is configurable via JWT_EXPIRATION
+
+---
 
 ## 🔍 API Documentation
 
@@ -107,9 +113,13 @@ Access Swagger UI locally after starting the backend:
 
 ### ✅ Test Coverage
 
-Component Test Type Status Notes
-Service classes Unit Test ✅ Yes Uses Mockito to mock repository
-CRUDRepositoryImpl Unit/Integration ✅ Yes Can be tested with mocks or H2 DB
+```bash
+Component           Test Type           Status          Notes
+Service classes     Unit Test           ✅ Yes          Uses Mockito to mock repository
+CRUDRepositoryImpl  Unit/Integration    ✅ Yes          Can be tested with mocks or H2 DB
+```
+
+---
 
 ### 🧪 Running Tests
 
@@ -125,8 +135,11 @@ Or with global Maven:
 mvn test
 ```
 
+---
+
 ## 📂 Project Structure
 
+```bash
 backend/
 ├── src/
 │ ├── main/
@@ -139,6 +152,9 @@ backend/
 ├── Dockerfile
 ├── README.md
 └── pom.xml
+```
+
+---
 
 ## ✅ Tips
 
