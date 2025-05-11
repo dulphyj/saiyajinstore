@@ -40,8 +40,6 @@ Saiyajin Store is a full stack e-commerce web application built with **Angular**
 
 ---
 
----
-
 ## 🧭 UML Diagrams
 
 The following diagrams illustrate the structure and behavior of the application:
@@ -74,6 +72,7 @@ Shows the general application flow, from login to checkout.
 
 ## 📦 Project Structure
 
+```bash
 ├── docker-compose.yml
 ├── .env.example
 ├── README.md
@@ -84,6 +83,7 @@ Shows the general application flow, from login to checkout.
 └── saijainstore/
 ├── Dockerfile
 └── README.md
+```
 
 ---
 
