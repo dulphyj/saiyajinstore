@@ -15,7 +15,7 @@ RUN npm run build -- --configuration production
 FROM nginx:alpine
 EXPOSE 80
 # Copia archivos compilados al directorio que sirve Nginx
-COPY --from=builder /app/dist/saijainstore /usr/share/nginx/html
+COPY --from=builder /app/dist/saijainstore/browser /usr/share/nginx/html
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
