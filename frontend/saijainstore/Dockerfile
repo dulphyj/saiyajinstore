@@ -1,7 +1,7 @@
 # Etapa 1: build de Angular
 FROM node:19-alpine AS dev
 WORKDIR /app
-COPY package.json package.json
+COPY package.json package.json* ./
 RUN npm install
 
 # Etapa 2: build de Angular
@@ -15,8 +15,8 @@ RUN npm run build -- --configuration production
 FROM nginx:alpine
 EXPOSE 80
 # Copia archivos compilados al directorio que sirve Nginx
-COPY --from=builder /app/dist/saijainstore/browser /usr/share/nginx/html
-RUN rm etc/nginx/conf.d/default.conf
+COPY --from=builder /app/dist/saijainstore /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Inicia Nginx en modo foreground
