@@ -37,16 +37,6 @@ services:
     networks:
       - saiyajin-network
 
-  frontend:
-    build:
-      context: ./frontend/saijainstore
-    container_name: saiyajin-frontend
-    ports:
-      - "80:80"
-    depends_on:
-      - backend
-    networks:
-      - saiyajin-network
 
 volumes:
   postgres-data:
