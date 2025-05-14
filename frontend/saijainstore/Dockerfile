@@ -5,8 +5,8 @@ COPY package.json package-lock.json* ./
 
 
 # Herramientas básicas para compilar paquetes nativos
-# RUN apk add --no-cache python3 make g++ \
-RUN npm i -g @angular/cli \
+RUN apk add --no-cache python3 make g++ \
+    && npm i -g @angular/cli \
     && npm install \
     && apk del python3 make g++
 
