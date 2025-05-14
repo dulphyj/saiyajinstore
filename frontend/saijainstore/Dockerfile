@@ -5,7 +5,9 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 # Copiar archivos necesarios
-COPY package*.json ./
+COPY package.json package-lock.json ./
+
+RUN npm install -g @angular/cli
 
 # Instalar dependencias
 RUN npm install
