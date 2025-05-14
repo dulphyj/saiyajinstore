@@ -3,11 +3,10 @@ FROM node:19-alpine AS dev
 WORKDIR /app
 COPY package.json package-lock.json* ./
 
-#instalación de devDependencies (por defecto NODE_ENV=production en muchas plataformas)
-ENV NODE_ENV=development
 
 # Herramientas básicas para compilar paquetes nativos
-RUN apk add --no-cache python3 make g++ \
+# RUN apk add --no-cache python3 make g++ \
+RUN npm i -g @angular/cli \
     && npm install \
     && apk del python3 make g++
 
@@ -20,7 +19,7 @@ COPY . .
 # Angular CLI en el PATH local
 ENV PATH="/app/node_modules/.bin:$PATH"
 
-RUN npm run build -- --configuration production
+RUN npm run build --prod
 
 # Etapa 3: imagen final con Nginx
 FROM nginx:alpine
