@@ -1,8 +1,11 @@
 # Etapa 1: build de Angular
 FROM node:19-alpine AS dev
+RUN mkdir -p /app
 WORKDIR /app
-COPY package.json package.json */
+COPY package.json /app
 RUN npm install
+COPY . /app
+
 
 # Etapa 2: build de Angular
 FROM node:19-alpine AS builder
