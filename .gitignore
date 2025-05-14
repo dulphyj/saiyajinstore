@@ -21,10 +21,11 @@ backend/src/main/resources/application-dev.properties
 .env
 
 # Frontend
-/frontend/node_modules/
-/frontend/dist/
-/frontend/.idea/
-/frontend/.vscode
+/frontend/saijainstore/node_modules/
+/frontend/saijainstore/dist/
+/frontend/saijainstore/.angular/
+/frontend/saijainstore/.idea/
+/frontend/saijainstore/.vscode
 
 # Ignore Angular environment configuration files
 /frontend/saijainstore/src/environments/environment.prod.ts
