@@ -6,8 +6,7 @@ WORKDIR /app
 
 # Copiar archivos necesarios
 COPY package.json package-lock.json ./
-
-RUN npm install -g @angular/cli
+COPY angular.json ./angular.json
 
 # Instalar dependencias
 RUN npm install
