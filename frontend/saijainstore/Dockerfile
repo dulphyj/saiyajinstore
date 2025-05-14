@@ -19,13 +19,12 @@ COPY . .
 # Angular CLI en el PATH local
 ENV PATH="/app/node_modules/.bin:$PATH"
 
-RUN npm run build --prod
+RUN npm run build
 
 # Etapa 3: imagen final con Nginx
 FROM nginx:alpine
 EXPOSE 80
 
-# ⚠️ Si no usas Angular Universal, este es el path correcto
 COPY --from=builder /app/dist/saijainstore/browser /usr/share/nginx/html
 
 RUN rm /etc/nginx/conf.d/default.conf
