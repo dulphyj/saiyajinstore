@@ -11,11 +11,14 @@ COPY angular.json ./angular.json
 # Instalar dependencias
 RUN npm install
 
+# Instalar Angular CLI globalmente
+#RUN npm install -g @angular/cli
+
 # Copiar el resto del proyecto
 COPY . .
 
 # Compilar el proyecto Angular
-RUN ng build --configuration=production
+RUN RUN ng build --configuration=production
 
 # Etapa 2: imagen final con Nginx
 FROM nginx:alpine
