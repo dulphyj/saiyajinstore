@@ -18,7 +18,7 @@ RUN npm install -g @angular/cli
 COPY . .
 
 # Compilar el proyecto Angular
-RUN RUN ng build --configuration=production
+RUN npm run ng build -- --configuration=production
 
 # Etapa 2: imagen final con Nginx
 FROM nginx:alpine
