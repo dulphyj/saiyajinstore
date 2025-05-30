@@ -18,8 +18,8 @@ import org.springframework.web.servlet.view.RedirectView;
 @AllArgsConstructor
 public class PaypalController {
     private final PaypalService paypalService;
-    private final String SUCCESS_URL = "http://localhost:8080/api/payments/success";
-    private final String CANCEL_URL = "http://localhost:8080/api/payments/cancel";
+    private final String SUCCESS_URL = "http://192.168.42.126:8080/api/payments/success";
+    private final String CANCEL_URL = "http://192.168.42.126:8080/api/payments/cancel";
 
     @PostMapping
     public URLPaypalResponse createPayment(@RequestBody DataPayment dataPayment) {
