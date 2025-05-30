@@ -15,7 +15,7 @@ RUN npm install
 COPY . .
 
 # Compilar el proyecto Angular
-RUN npm run build -- --configuration production
+RUN ng build --configuration=production
 
 # Etapa 2: imagen final con Nginx
 FROM nginx:alpine
