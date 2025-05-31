@@ -8,7 +8,14 @@ pipeline {
     stages {
         stage('Clonar código') {
             steps {
-                git 'git@github.com:dulphyj/saiyajinstore.git'
+                checkout([$class: 'GitSCM',
+          branches: [[name: '*/main']],
+          userRemoteConfigs: [[
+            url: 'git@github.com:dulphyj/saiyajinstore.git',
+            credentialsId: 'github-deply-key-saijain'
+          ]]
+])
+
             }
         }
 
