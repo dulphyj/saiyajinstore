@@ -9,13 +9,20 @@ pipeline {
         stage('Clonar código') {
             steps {
                 checkout([$class: 'GitSCM',
-          branches: [[name: '*/main']],
-          userRemoteConfigs: [[
-            url: 'git@github.com:dulphyj/saiyajinstore.git',
-            credentialsId: 'github-deply-key-saijain'
-          ]]
-])
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[
+                        url: 'git@github.com:dulphyj/saiyajinstore.git',
+                        credentialsId: 'github-deply-key-saijain'
+                    ]]
+                ])
+            }
+        }
 
+        stage('Inyectar .env') {
+            steps {
+                withCredentials([file(credentialsId: 'saijain-env', variable: 'ENV_FILE')]) {
+                    sh 'cp $ENV_FILE .env'
+                }
             }
         }
 
