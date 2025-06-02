@@ -15,7 +15,7 @@ RUN npm install --legacy-peer-deps
 
 # Copy the entire project and build the Angular app
 COPY . /app
-RUN npm run build --prod
+RUN npm run build --configuration production
 
 # Stage 2: Serve Angular App with Nginx
 FROM ${NGINX_URI:-nginx}:stable-alpine AS deployer
