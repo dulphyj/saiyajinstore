@@ -10,11 +10,11 @@ WORKDIR /app
 RUN npm install -g @angular/cli
 
 # Copy package.json and install dependencies
-COPY package.json /app
+COPY package*.json /app
 RUN npm install --legacy-peer-deps
 
 # Copy the entire project and build the Angular app
-COPY . /app
+COPY . .
 RUN npm run build --configuration production
 
 # Stage 2: Serve Angular App with Nginx
