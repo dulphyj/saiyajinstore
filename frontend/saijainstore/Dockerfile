@@ -22,7 +22,8 @@ FROM ${NGINX_URI:-nginx}:stable-alpine AS deployer
 COPY --from=builder /app/dist/saijainstore/browser /usr/share/nginx/html
 
 # Optionally configure Nginx
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+
 
 EXPOSE 80
 
