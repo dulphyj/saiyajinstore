@@ -1,35 +1,28 @@
-# Etapa 1: build de Angular
-FROM node:20-alpine AS builder
+# Arguments to avoid too many pulls from Docker Hub
+ARG NODE_URI
+ARG NGINX_URI
 
-# Crear directorio de la app
+# Stage 1: Build Angular App
+FROM ${NODE_URI:-node}:lts-alpine3.15 AS builder
 WORKDIR /app
 
-# Copiar archivos necesarios
-COPY package.json package-lock.json ./
-COPY angular.json ./angular.json
-
-# Instalar dependencias
-RUN npm install
-
-# Instalar Angular CLI globalmente
+# Install Angular CLI globally
 RUN npm install -g @angular/cli
 
-# Copiar el resto del proyecto
-COPY . .
+# Copy package.json and install dependencies
+COPY package.json /app
+RUN npm install --legacy-peer-deps
 
-# Compilar el proyecto Angular
-RUN npm run ng build -- --configuration=production
+# Copy the entire project and build the Angular app
+COPY . /app
+RUN npm run build --prod
 
-# Etapa 2: imagen final con Nginx
-FROM nginx:alpine
-
-RUN rm -rf /usr/share/nginx/html/*
-
-# Copiar archivos compilados al directorio que sirve Nginx
+# Stage 2: Serve Angular App with Nginx
+FROM ${NGINX_URI:-nginx}:stable-alpine AS deployer
 COPY --from=builder /app/dist/saijainstore/browser /usr/share/nginx/html
 
-# Reemplazar la configuración de Nginx
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+# Optionally configure Nginx
+COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 
