@@ -31,12 +31,17 @@ pipeline {
         }
 
 	stage('Run tests') {
-            	steps {
-                	dir('backend') {
-                    		sh 'mvn test'
-                	}
-            	}
-        }
+    		steps {
+        		dir('backend') {
+            			sh '''
+                			set -o allexport
+                			source ../.env
+                			set +o allexport
+                			mvn test
+            			'''
+        		}
+    		}
+	}
 
         stage('Rebuild and lift containers') {
             steps {
