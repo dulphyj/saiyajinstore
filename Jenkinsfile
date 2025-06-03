@@ -35,7 +35,7 @@ pipeline {
         		dir('backend') {
             			sh '''
                 			set -o allexport
-                			source ../.env
+                			. ../.env
                 			set +o allexport
                 			mvn test
             			'''
