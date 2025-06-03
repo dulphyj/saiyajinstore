@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven 3.9.9'
+    }
+
     environment {
         COMPOSE_PROJECT_NAME = "saiyajinstore"
     }
