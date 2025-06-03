@@ -1,6 +1,7 @@
 package com.gonzalodev.saiyajinstore.backend.infrastructure.rest;
 
 import com.gonzalodev.saiyajinstore.backend.application.PaypalService;
+import com.gonzalodev.saiyajinstore.backend.config.AppUrlProperties;
 import com.gonzalodev.saiyajinstore.backend.domain.model.DataPayment;
 import com.gonzalodev.saiyajinstore.backend.domain.model.URLPaypalResponse;
 import com.paypal.api.payments.Links;
@@ -18,11 +19,12 @@ import org.springframework.web.servlet.view.RedirectView;
 @AllArgsConstructor
 public class PaypalController {
     private final PaypalService paypalService;
-    private final String SUCCESS_URL = "http://192.168.42.126:8080/api/payments/success";
-    private final String CANCEL_URL = "http://192.168.42.126:8080/api/payments/cancel";
+    private final AppUrlProperties appUrlProperties;
 
     @PostMapping
     public URLPaypalResponse createPayment(@RequestBody DataPayment dataPayment) {
+        String successUrl = appUrlProperties.getBackendBaseUrl() + "/api/payments/success";
+        String cancelUrl = appUrlProperties.getBackendBaseUrl() + "/api/payments/cancel";
         try
             {
                 Payment payment = paypalService.createPayment(
@@ -31,8 +33,8 @@ public class PaypalController {
                     dataPayment.getMethod(),
                     "SALE",
                     dataPayment.getDescription(),
-                    CANCEL_URL,
-                    SUCCESS_URL
+                    cancelUrl,
+                    successUrl
                 );
                 for(Links links: payment.getLinks()) {
                     if(links.getRel().equals("approval_url")){
@@ -43,7 +45,7 @@ public class PaypalController {
             } catch (PayPalRESTException e){
             e.printStackTrace();
         }
-        return new URLPaypalResponse("http://localhost:4200");
+        return new URLPaypalResponse(appUrlProperties.getFrontendBaseUrl());
     }
 
     @GetMapping("/success")
@@ -52,17 +54,17 @@ public class PaypalController {
             Payment payment = paypalService.executePayment(paymentId, payerId);
             if(payment.getState().equals("approved")){
                 log.info("approved, success");
-                return new RedirectView("http://localhost:4200/payment/success");
+                return new RedirectView( appUrlProperties.getFrontendBaseUrl() + "/payment/success");
             }
         } catch (PayPalRESTException e) {
             log.warn("error with approved");
             e.printStackTrace();
         }
-        return new RedirectView("http://localhost:4200");
+        return new RedirectView(appUrlProperties.getFrontendBaseUrl());
     }
 
     @GetMapping("/cancel")
     public RedirectView paymentCancel(){
-        return new RedirectView("http://localhost:4200");
+        return new RedirectView(appUrlProperties.getFrontendBaseUrl());
     }
 }
