@@ -33,12 +33,7 @@ pipeline {
 	stage('Run tests') {
     		steps {
         		dir('backend') {
-            			sh '''
-                			set -o allexport
-                			. ../.env
-                			set +o allexport
-                			mvn test
-            			'''
+            			sh 'mvn test'
         		}
     		}
 	}
