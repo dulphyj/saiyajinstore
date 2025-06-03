@@ -6,7 +6,7 @@ pipeline {
     }
 
     stages {
-        stage('Clonar código') {
+        stage('Clon code') {
             steps {
                 checkout([$class: 'GitSCM',
                     branches: [[name: '*/main']],
@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-        stage('Inyectar .env') {
+        stage('Inject .env') {
             steps {
                 withCredentials([file(credentialsId: 'saijain-env', variable: 'ENV_FILE')]) {
                     sh 'cp $ENV_FILE .env'
@@ -26,7 +26,15 @@ pipeline {
             }
         }
 
-        stage('Reconstruir y levantar contenedores') {
+	stage('Run tests') {
+            	steps {
+                	dir('backend') {
+                    		sh 'mvn test'
+                	}
+            	}
+        }
+
+        stage('Rebuild and lift containers') {
             steps {
                 script {
                     sh 'docker-compose down'
