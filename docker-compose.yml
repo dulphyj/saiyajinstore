@@ -30,20 +30,24 @@ services:
       PAYPAL_CLIENT_SECRET: ${PAYPAL_CLIENT_SECRET}
       JWT_SECRET: ${JWT_SECRET}
       JWT_EXPIRATION: ${JWT_EXPIRATION}
-    ports:
-      - "${PORT}:${PORT}"
+    expose:
+      - ${PORT}
     networks:
       - saiyajin-network
-  #frontend:
-  #  build:
-  #   context: ./frontend/saijainstore
-  #  container_name: saiyajin-frontend
-  #  ports:
-  #    - "80:80"
-  #  depends_on:
-  #    - backend
-  #  networks:
-  #   - saiyajin-network
+
+  frontend:
+    build:
+     context: ./frontend/saijainstore
+     dockerfile: Dockerfile
+     args:
+        FRONTEND_BACKEND_URL: ${FRONTEND_BACKEND_URL}
+    container_name: saiyajin-frontend
+    ports:
+      - "${FRONTEND_PORT}:80"
+    depends_on:
+      - backend
+    networks:
+     - saiyajin-network
 
 volumes:
   postgres-data:

@@ -27,9 +27,6 @@ backend/src/main/resources/application-dev.properties
 /frontend/saijainstore/.idea/
 /frontend/saijainstore/.vscode
 
-# Ignore Angular environment configuration files
-/frontend/saijainstore/src/environments/environment.prod.ts
-
 # General
 .DS_Store
 *.log
