@@ -4,6 +4,12 @@ Saiyajin Store is a full stack e-commerce web application built with **Angular**
 
 ---
 
+## 🌐 Demo
+
+🧪 Online demo: [https://saiyajinstore.netlify.app](https://saiyajinstore.netlify.app)
+
+---
+
 ## 🧰 Technologies Used
 
 - **Backend:** Java, Spring Boot
