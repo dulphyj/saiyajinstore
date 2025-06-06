@@ -1,1 +1,5 @@
-/*    /index.html   200
+# Redirigir llamadas a /api/ hacia tu backend
+/api/*  http://20.94.243.1:8080/:splat  200
+
+# Redirección de todas las rutas (Angular SPA) al index.html
+/*      /index.html  200
